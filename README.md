@@ -1,13 +1,13 @@
-# Work in progress
+# Work In Progress
 
-A simple Bot for the browser game diep.io in Python with the OpenCV library.
+A simple Bot for the browser game diep.iom, using Python with the OpenCV computer vision library.
 
 
-## Development stages
+## Development Stages
 
 This is a personal hobby project to learn more about python and
 automation, if everything goes well several stages are planned during
-development.
+development of this tool.
 
 1. Boilerplate and a basic framework (currently in development)
     - Basic image recognition
@@ -28,6 +28,13 @@ development.
 ### Dependencies
 
 - <= Python 3.12.6
-- <= numpy         2.1.2
-- <= opencv-python 4.10.0.84
-- <= pip           24.2
+- <= numpy                 2.1.3
+- <= opencv-contrib-python 4.10.0.84
+- <= pip                   24.3.1
+
+
+#### Current Implementations
+
+- Image data (small)
+- Very, very basic image detection.
+
