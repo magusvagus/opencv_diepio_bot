@@ -2,23 +2,32 @@
 
 A simple Bot for the browser game diep.io in Python with the OpenCV library.
 
-## Developement stages
+
+## Development stages
 
 This is a personal hobby project to learn more about python and
 automation, if everything goes well several stages are planned during
-developement.
+development.
 
-1. Boilerplate and a basic framework
+1. Boilerplate and a basic framework (currently in development)
     - Basic image recognition
     - Simple movement and aiming
     - Interaction with other objects/ player
     - automated upgrading and leveling
 
 2. Fine tuning of basic functions
-    - Full image recognition
+    - Full dynamic image recognition
     - Advanced movements
-    - Polished Aimimg
+    - Polished aiming
 
-3. Simple terminal UI using Ncurses
+3. Simple terminal UI using python curses
 
 4. Performance tweaks
+
+
+### Dependencies
+
+- <= Python 3.12.6
+- <= numpy         2.1.2
+- <= opencv-python 4.10.0.84
+- <= pip           24.2
