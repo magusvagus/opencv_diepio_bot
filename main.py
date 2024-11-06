@@ -4,20 +4,28 @@ import numpy as np
 
 # basic image matching
 # best comparison method yet still to be determined 
-# no conversion
 
+# NOTE: image data of farmables and bullets have been retaken and are now the same depth, no conversion needed!
+# FIX: same has still to be done for > enemies, player, UI.
 screenshot_img = cv.imread('./screenshots_diepio/gameplay_screenshots/Oct30_224501.png', cv.IMREAD_UNCHANGED)
-screenshot_img = cv.cvtColor(screenshot_img, cv.COLOR_BGR2GRAY) 
-
-#NOTE: images have to be converted to the same depth 
-#(a workaround is needed, since this can significantly slow down image processing)
-
-farm_yellow_cube = cv.imread('./screenshots_diepio/farming/yellow_cube1.png', cv.IMREAD_UNCHANGED)
-farm_yellow_cube = cv.cvtColor(farm_yellow_cube, cv.COLOR_BGR2GRAY)
+farm_yellow_cube = cv.imread('./screenshots_diepio/farming/farm_cube2.png', cv.IMREAD_UNCHANGED)
 
 result = cv.matchTemplate(screenshot_img, farm_yellow_cube, cv.TM_CCOEFF_NORMED)
 
-cv.imshow('Result', result)
+# max value location
+minVal, maxVal, minLoc, maxLoc = cv.minMaxLoc(result)
+print(maxLoc)
+
+#thresh = cv.threshold(result, 0.7, 1.0, cv.THRESH_BINARY)
+#print(thresh)
+
+# fetch image size of the needle
+farm_x, farm_y, _ = farm_yellow_cube.shape
+
+# draw rectangle around object
+cv.rectangle(screenshot_img, maxLoc, (maxLoc[0] + farm_x, maxLoc[1] + farm_y), (0,255,0), 2, 8, 0)
+
+cv.imshow('Result', screenshot_img)
 cv.waitKey()
 
 
