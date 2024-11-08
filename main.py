@@ -36,6 +36,10 @@ rectangles_grouped, _ = cv.groupRectangles(rectangles_all, 1, 0.02) # "_" -> ign
 for rect in rectangles_grouped:
     # (top left), (bottom right) coordinates to draw rectangle
     cv.rectangle(screenshot_img, (rect[0], rect[1]), (rect[2] , rect[3]), (0,255,0), 2)
+    # display dots in the middle of the rectangle to make it clickable for PyAutoGui
+    # make the code more readable and simple. Dots could be displayed a little bit lower, but its fine for now.
+    cv.circle(screenshot_img, (int(rect[0]) + int(y_Cube/2), int(rect[1] + int(x_Cube/2)) ) , 4, (0,0,255), cv.FILLED)
+
 
 cv.imshow('Result', screenshot_img)
 cv.waitKey()
