@@ -30,8 +30,8 @@ development of this tool.
 <= Python 3.12.6 \
 <= pip                   24.3.1 \
 <= numpy                 2.1.3 \
-<= opencv-contrib-python 4.10.0.84
-
+<= opencv-contrib-python 4.10.0.84 \
+<= xlib                  0.21
 
 ### Current Implementations
 
