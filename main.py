@@ -5,7 +5,7 @@ import Xlib
 import Xlib.display
 from Xlib import X
 
-# NOTE: try not to use OOP, lets dumb it down to functions.
+# NOTE: try not to use OOP, lets dumb it down to functions. XCB might be a more wise option for the future (lower level -> faster).
 class WindowCapture:
     stopped = True
     lock = None
