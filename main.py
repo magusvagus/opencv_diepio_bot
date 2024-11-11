@@ -1,5 +1,6 @@
 import cv2 as cv
 import numpy as np
+import time
 from window_capture import WindowCapture
 
 
@@ -11,6 +12,9 @@ run = True
 # FIX: UI image data has to be retaken.
 yellow_cube = cv.imread('./screenshots_diepio/farming/farm_cube2.png', cv.IMREAD_UNCHANGED)
 
+
+# FPS count start
+fps_start = time.time()
 
 # main loop
 while run:
@@ -59,6 +63,13 @@ while run:
         if key == ord('q'):
             run = False
             windowCapture.stop()
+        
+        # FPS count stop
+        fps_end = ( 1 / (time.time() - fps_start) )
+        print(f"FPS: %f" % fps_end)
 
-# FIX: this is getting cluttered, seperate into more files and pack some code into functions.
+
+
+
+
 
