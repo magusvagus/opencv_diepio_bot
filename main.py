@@ -4,6 +4,42 @@ import time
 from window_capture import WindowCapture
 
 
+def thresholding(result, threshold = 0.35):
+    # max value location
+    minVal, maxVal, minLoc, maxLoc = cv.minMaxLoc(result)
+
+    # pentagon needs highier threshold, player character gives false positive.
+    locations = np.where(result >= threshold)
+
+    return locations
+
+
+def mergeMultiplePositives(locations, image, needle, eps = 0.02):
+
+    # fetch image size of the needle
+    ySide = needle.shape[0]
+    xSide = needle.shape[1]
+
+    # create a list with all rectangles
+    rectangles_all = []
+
+    for y, x in zip(locations[0], locations[1]):
+        rectangles_all.append( (x, y, x+ySide, y+xSide) )
+        rectangles_all.append( (x, y, x+ySide, y+xSide) ) # double list so non-dublicated rectangles dont get lost.
+
+    # group rectangles together near each other -> into new list
+    rectangles_grouped, _ = cv.groupRectangles(rectangles_all, 1, eps) # "_" -> ignoring weights value for now
+
+    for rect in rectangles_grouped:
+        # (top left), (bottom right) coordinates to draw rectangle
+        cv.rectangle(image, (rect[0], rect[1]), (rect[2] , rect[3]), (0,255,0), 2)
+        # display dots in the middle of the rectangle to make it clickable for PyAutoGui
+        # make the code more readable and simple. Dots could be displayed a little bit lower, but its fine for now.
+        cv.circle(image, (int(rect[0]) + int(ySide/2), int(rect[1] + int(xSide/2)) ) , 4, (0,0,255), cv.FILLED)
+
+    return rectangles_grouped,
+
+
 windowCapture = WindowCapture('librewolf')
 windowCapture.start()
 run = True
@@ -27,36 +63,9 @@ while run:
 
         result = cv.matchTemplate(image, yellow_cube, cv.TM_CCOEFF_NORMED)
 
-        # max value location
-        minVal, maxVal, minLoc, maxLoc = cv.minMaxLoc(result)
+        locations = thresholding(result, 0.35)
 
-        # fetch image size of the needle
-        y_Cube = yellow_cube.shape[0]
-        x_Cube = yellow_cube.shape[1]
-
-        # pentagon needs highier threshold, player character gives false positive.
-        threshold = 0.35
-        yLoc, xLoc = np.where(result >= threshold)
-
-        # create a list with all rectangles
-        rectangles_all = []
-
-
-        for y, x in zip(yLoc, xLoc):
-            rectangles_all.append( (x, y, x+y_Cube, y+x_Cube) )
-            rectangles_all.append( (x, y, x+y_Cube, y+x_Cube) ) # double list so non-dublicated rectangles dont get lost.
-
-        # group rectangles together near each other -> into new list
-        rectangles_grouped, _ = cv.groupRectangles(rectangles_all, 1, 0.02) # "_" -> ignoring weights value for now
-
-
-        for rect in rectangles_grouped:
-            # (top left), (bottom right) coordinates to draw rectangle
-            cv.rectangle(image, (rect[0], rect[1]), (rect[2] , rect[3]), (0,255,0), 2)
-            # display dots in the middle of the rectangle to make it clickable for PyAutoGui
-            # make the code more readable and simple. Dots could be displayed a little bit lower, but its fine for now.
-            cv.circle(image, (int(rect[0]) + int(y_Cube/2), int(rect[1] + int(x_Cube/2)) ) , 4, (0,0,255), cv.FILLED)
-
+        rectangles_grouped = mergeMultiplePositives(locations,image, yellow_cube, 0.02)
 
         cv.imshow("Screenshot", image)
         key = cv.waitKey(1)
