@@ -4,17 +4,25 @@ import time
 from window_capture import WindowCapture
 
 
-def thresholding(result, threshold = 0.35):
+
+# thresholding template matching
+def thresholding(image, needle ,threshold = 0.35, comp_method=cv.TM_CCOEFF_NORMED):
+
+    result = cv.matchTemplate(image, needle, comp_method)
+
     # max value location
     minVal, maxVal, minLoc, maxLoc = cv.minMaxLoc(result)
 
     # pentagon needs highier threshold, player character gives false positive.
-    locations = np.where(result >= threshold)
+    # positives is a 2D list of x,y coordinates
+    positives = np.where(result >= threshold)
 
-    return locations
+    return positives
 
 
-def mergeMultiplePositives(locations, image, needle, eps = 0.02):
+
+# take list of multiple positives and merge into single marks
+def mergeMultiplePositives(positives, image, needle, eps = 0.02):
 
     # fetch image size of the needle
     ySide = needle.shape[0]
@@ -23,7 +31,7 @@ def mergeMultiplePositives(locations, image, needle, eps = 0.02):
     # create a list with all rectangles
     rectangles_all = []
 
-    for y, x in zip(locations[0], locations[1]):
+    for y, x in zip(positives[0], positives[1]):
         rectangles_all.append( (x, y, x+ySide, y+xSide) )
         rectangles_all.append( (x, y, x+ySide, y+xSide) ) # double list so non-dublicated rectangles dont get lost.
 
@@ -37,16 +45,17 @@ def mergeMultiplePositives(locations, image, needle, eps = 0.02):
         # make the code more readable and simple. Dots could be displayed a little bit lower, but its fine for now.
         cv.circle(image, (int(rect[0]) + int(ySide/2), int(rect[1] + int(xSide/2)) ) , 4, (0,0,255), cv.FILLED)
 
-    return rectangles_grouped,
 
 
+
+
+# define window/ app to capture
 windowCapture = WindowCapture('librewolf')
 windowCapture.start()
 run = True
 
-
-# FIX: UI image data has to be retaken.
-yellow_cube = cv.imread('./screenshots_diepio/farming/farm_cube2.png', cv.IMREAD_UNCHANGED)
+# load needle image
+needle_image = cv.imread('./screenshots_diepio/farming/farm_cube2.png', cv.IMREAD_UNCHANGED)
 
 
 # FPS count start
@@ -55,19 +64,20 @@ fps_start = time.time()
 # main loop
 while run:
     if windowCapture.screenshot is not None:
+
         image = windowCapture.screenshot
 
         # image variable needs conversion, otherwise cv.rectangle function throws err.
         # NOTE: need workaround and color are off.
-        image = cv.cvtColor(image, cv.COLOR_BGR2RGB)
+        # HACK: this works for now
+        screenshot = cv.cvtColor(image, cv.COLOR_RGB2BGR)
+        screenshot = cv.cvtColor(image, cv.COLOR_BGR2RGB)
 
-        result = cv.matchTemplate(image, yellow_cube, cv.TM_CCOEFF_NORMED)
+        positives = thresholding(screenshot, needle_image, 0.35)
 
-        locations = thresholding(result, 0.35)
+        mergeMultiplePositives(positives, screenshot, needle_image, eps=0.02)
 
-        rectangles_grouped = mergeMultiplePositives(locations,image, yellow_cube, 0.02)
-
-        cv.imshow("Screenshot", image)
+        cv.imshow("Screenshot", screenshot)
         key = cv.waitKey(1)
         if key == ord('q'):
             run = False
