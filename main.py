@@ -19,23 +19,57 @@ needle_image = cv.imread('./screenshots_diepio/farming/farm_cube2.png', cv.IMREA
 image = cv.imread('./screenshots_diepio/gameplay_screenshots/Oct30_224501.png', cv.IMREAD_UNCHANGED)
 
 
-# trackbars
+# create trackbars
+def TrackbarsHSV(windowName, LH, LS, LV, UH, US, UV, steps, maxVal):
 
-# dummy function
-def nothing(x):
-    pass
+    # dummy_function
+    def dummyFunction(x):
+        pass
 
-cv.namedWindow("Trackbars")
+    cv.namedWindow(windowName)
 
-# indidividual trackbars with upper/ lower HSV values in the
-# "Trackbars" window.
-cv.createTrackbar("L-H","Trackbars",0,255,nothing)
-cv.createTrackbar("L-S","Trackbars",0,255,nothing)
-cv.createTrackbar("L-V","Trackbars",0,255,nothing)
-cv.createTrackbar("U-H","Trackbars",0,255,nothing)
-cv.createTrackbar("U-S","Trackbars",0,255,nothing)
-cv.createTrackbar("U-V","Trackbars",0,255,nothing)
+    # indidividual trackbars with upper/ lower HSV values in the
+    # "Trackbars" window.
+    cv.createTrackbar(LH,windowName,steps,maxVal,dummyFunction)
+    cv.createTrackbar(LS,windowName,steps,maxVal,dummyFunction)
+    cv.createTrackbar(LV,windowName,steps,maxVal,dummyFunction)
+    cv.createTrackbar(UH,windowName,steps,maxVal,dummyFunction)
+    cv.createTrackbar(US,windowName,steps,maxVal,dummyFunction)
+    cv.createTrackbar(UV,windowName,steps,maxVal,dummyFunction)
 
+
+# Callback function trackbars with masking
+def maskTrackbarsCallback(screenshot ,windowName, LH, LS, LV, UH, US, UV):
+
+    # BGR -> Hue Saturation Value
+    hsv = cv.cvtColor(screenshot, cv.COLOR_BGR2HSV)
+
+
+    # connecting the input of the trackbars to the
+    # to the inside the main loop
+    l_h = cv.getTrackbarPos(LH,windowName)
+    l_s = cv.getTrackbarPos(LS,windowName)
+    l_v = cv.getTrackbarPos(LV,windowName)
+    u_h = cv.getTrackbarPos(UH,windowName)
+    u_s = cv.getTrackbarPos(US,windowName)
+    u_v = cv.getTrackbarPos(UV,windowName)
+
+    # taking the Track bar output to the lower variable
+    lower = np.array([l_h,l_s,l_v])
+    # values we want to detect
+    upper = np.array([u_h,u_s,u_v])
+    # upper and lower are the bounds any value between
+    # those rnges will be detected as white
+
+    mask = cv.inRange(hsv, lower, upper)
+
+    # apply the mask to the frame
+    result = cv.bitwise_and(screenshot, screenshot, mask=mask)
+
+    return result, mask, hsv
+
+# create HSV trackbars for masking
+TrackbarsHSV("Trackbars", "LH","LS","LV","UH","US","UV", 0, 255)
 
 # FPS count start
 fps_start = time.time()
@@ -58,30 +92,8 @@ while run:
         # resize the screenshot
         screenshot = cv.resize(screenshot, (900,600))
 
-        # BGR -> Hue Saturation Value
-        hsv = cv.cvtColor(screenshot, cv.COLOR_BGR2HSV)
-
-
-        # connecting the input of the trackbars to the
-        # to the inside the main loop
-        l_h = cv.getTrackbarPos("L-H","Trackbars")
-        l_s = cv.getTrackbarPos("L-S","Trackbars")
-        l_v = cv.getTrackbarPos("L-V","Trackbars")
-        u_h = cv.getTrackbarPos("U-H","Trackbars")
-        u_s = cv.getTrackbarPos("U-S","Trackbars")
-        u_v = cv.getTrackbarPos("U-V","Trackbars")
-
-        # taking the Track bar output to the lower variable
-        lower = np.array([l_h,l_s,l_v])
-        # values we want to detect
-        upper = np.array([u_h,u_s,u_v])
-        # upper and lower are the bounds any value between
-        # those rnges will be detected as white
-        mask = cv.inRange(hsv, lower, upper)
-
-
-        # apply the mask to the frame
-        result = cv.bitwise_and(screenshot, screenshot, mask=mask)
+        # trackbars callback function
+        result, mask, hsv = maskTrackbarsCallback(screenshot,"Trackbars","LH","LS","LV","UH","US","UV")
 
 
         cv.imshow("Screenshot", screenshot)
