@@ -43,23 +43,34 @@ def getScreenshot(windowId):
 
 
 
-
 # capture window called "librewolf"
 windowname = getWindowName("librewolf")
-print(windowname)
 image = getScreenshot(windowname)
 
 
-# print out current time H:M:S to be used in screenshot file name
-n = time.time()
-time_format = time.strftime("%H%M%S", time.gmtime(n))
-time = int(time_format) + 10000
+# loop to take 1 screenshot each second
+while True:
 
-# set filename for screenshot
-fileName = f"screenshotOpenCV{time}.png"
+    import time
 
-# show taken screenshot
-cv.imshow("result", image)
-cv.waitKey()
+    # wait one second
+    time.sleep(1)
 
-#cv.imwrite(fileName, image)
+    # print out current time H:M:S to be used in screenshot file name
+    n = time.time()
+    time_format = time.strftime("%H%M%S", time.gmtime(n))
+    time = int(time_format) + 10000
+
+    # set filename for screenshot
+    fileName = f"screenshotOpenCV{time}.png"
+
+    # show taken screenshot
+    #cv.imshow("result", image)
+    #cv.waitKey()
+
+    # save image
+    cv.imwrite(fileName, image)
+
+
+
+
