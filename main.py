@@ -38,6 +38,7 @@ while run:
 
 
         # NOTE: left for testing purposes
+
         #positives = thresholding(screenshot, needle_image, 0.35)
         #mergeMultiplePositives(positives, screenshot, needle_image, eps=0.02)
 
