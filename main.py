@@ -48,6 +48,8 @@ while run:
         # trackbars callback function
         result, mask, hsv = maskTrackbarsCallback(screenshot,"Trackbars","LH","LS","LV","UH","US","UV")
 
+        # re-convert to rgb from hsv
+        screenshot = cv.cvtColor(result, cv.COLOR_BGR2RGB)
 
         cv.imshow("Screenshot", screenshot)
         cv.imshow("hsv", hsv)

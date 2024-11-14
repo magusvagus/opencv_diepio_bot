@@ -44,12 +44,35 @@ def maskTrackbarsCallback(screenshot ,windowName, LH, LS, LV, UH, US, UV):
     # upper and lower are the bounds any value between
     # those rnges will be detected as white
 
-    mask = cv.inRange(hsv, lower, upper)
-
     # apply the mask to the frame
+    mask = cv.inRange(hsv, lower, upper)
     result = cv.bitwise_and(screenshot, screenshot, mask=mask)
 
     return result, mask, hsv
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
