@@ -47,6 +47,12 @@ def getScreenshot(windowId):
 windowname = getWindowName("librewolf")
 image = getScreenshot(windowname)
 
+# 10 seconds delay before starting the programm
+x = 10
+while x != 0:
+    print(f"\rRecording starts in {x} seconds...")
+    time.sleep(1)
+    x -= 1
 
 # loop to take 1 screenshot each second
 while True:
@@ -69,7 +75,9 @@ while True:
     #cv.waitKey()
 
     # save image
-    cv.imwrite(fileName, image)
+    cv.imwrite(f"../../../../screenshots/{fileName}", image)
+    # FIX: crop images to get rid of the rest (if full screen
+    # dosent get rid of them)
 
 
 
