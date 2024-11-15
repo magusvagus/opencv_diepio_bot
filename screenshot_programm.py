@@ -45,7 +45,6 @@ def getScreenshot(windowId):
 
 # capture window called "librewolf"
 windowname = getWindowName("librewolf")
-image = getScreenshot(windowname)
 
 # 10 seconds delay before starting the programm
 x = 10
@@ -54,13 +53,18 @@ while x != 0:
     time.sleep(1)
     x -= 1
 
+print("Running...")
+
 # loop to take 1 screenshot each second
 while True:
 
     import time
 
     # wait one second
-    time.sleep(1)
+    time.sleep(2)
+
+    # take the screenshot
+    image = getScreenshot(windowname)
 
     # print out current time H:M:S to be used in screenshot file name
     n = time.time()
@@ -75,9 +79,7 @@ while True:
     #cv.waitKey()
 
     # save image
-    cv.imwrite(f"../../../../screenshots/{fileName}", image)
-    # FIX: crop images to get rid of the rest (if full screen
-    # dosent get rid of them)
+    cv.imwrite(f"./screenshots_diepio/gameplay_screenshots/{fileName}", image)
 
 
 
