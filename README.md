@@ -31,7 +31,8 @@ development of this tool.
 <= pip                   24.3.1 \
 <= numpy                 2.1.3 \
 <= opencv-contrib-python 4.10.0.84 \
-<= xlib                  0.21
+<= xlib                  0.21 \
+<= ultralytics           8.2.103
 
 ### Current Implementations
 
