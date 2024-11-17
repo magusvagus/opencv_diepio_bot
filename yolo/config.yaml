@@ -1,16 +1,14 @@
 # absolute path to dataset
-path: ~/programming/python/opencv_bot/opencv_diepio_bot/yolo
+path: "../yolo"
 
 #train images
-train: ./images/train
+train: /home/ed/programming/python/opencv_bot/opencv_diepio_bot/yolo/images/train/ 
 
 # path to validation images
-val: ./images/val
+val: /home/ed/programming/python/opencv_bot/opencv_diepio_bot/yolo/images/val/
 
+# number of classes
+nc: 4
 
-# classes
-name:
-  0: y_cube
-  1: r_tringle
-  2: b_pentagon
-  3: enemy_npc1
+# names of classes
+name: ["y_cube", "r_tringle", "b_pentagon", "enemy_npc1" ]
