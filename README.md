@@ -9,9 +9,9 @@ This is a personal hobby project to learn more about python and
 automation, if everything goes well several stages are planned during
 development of this tool.
 
-1. Boilerplate and a basic framework (currently in development)
-- Basic image recognition
-- Simple movement and aiming
+1. Boilerplate and a basic framework (ready)
+- Basic image recognition (needs bigger dataset but works)
+- Simple movement and aiming (in developement)
 - Interaction with other objects/ players
 - automated upgrading and leveling
 
@@ -32,10 +32,13 @@ development of this tool.
 <= numpy                 2.1.3 \
 <= opencv-contrib-python 4.10.0.84 \
 <= xlib                  0.21 \
+
+YOLOv8 \
+
 <= ultralytics           8.2.103
 
 ### Current Implementations
 
 - Image data (small)
-- Very, very basic image detection.
+- Increased image detection using YOLO.
 
