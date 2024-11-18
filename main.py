@@ -51,17 +51,9 @@ while run:
         #screenshot = cv.cvtColor(image, cv.COLOR_BGR2RGB)
 
 
-        # NOTE: left for testing purposes
-
-        #positives = thresholding(screenshot, needle_image, 0.35)
-        #mergeMultiplePositives(positives, screenshot, needle_image, eps=0.02)
-
 
         # resize the screenshot
         screenshot = cv.resize(screenshot, (900,600))
-
-        # trackbars callback function
-        #result, mask, hsv = maskTrackbarsCallback(screenshot,"Trackbars","LH","LS","LV","UH","US","UV")
 
         # re-convert to rgb from hsv
         screenshot = cv.cvtColor(screenshot, cv.COLOR_BGR2RGB)
@@ -100,9 +92,6 @@ while run:
 
 
         cv.imshow("Screenshot", screenshot)
-        # cv.imshow("hsv", hsv)
-        # cv.imshow("mask", mask)
-        # cv.imshow("result", result)
 
         key = cv.waitKey(1)
         if key == ord('q'):
