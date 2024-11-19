@@ -12,11 +12,11 @@ development of this tool.
 1. Boilerplate and a basic framework (ready)
 - Basic image recognition (needs bigger dataset but works)
 
-> Class     Images  Instances    Box(P        R \
-> all         21        164      0.213      0.506      0.379      0.131 \
-> class_0     20         59      0.132          1      0.581       0.22 \
-> class_1      21         79      0.507      0.519      0.502      0.168 \
-> class_2      12         26          0          0      0.054    0.00579 \
+>Class     Images  Instances   Box(P        R        mAP50    mAP50-95) \
+> all         21      164      0.213      0.506      0.379      0.131 \
+> class_0     20       59      0.132          1      0.581       0.22 \
+> class_1      21       79      0.507      0.519      0.502      0.168 \
+> class_2      12       26          0          0      0.054    0.00579
 
 - Simple movement and aiming (in developement)
 - Interaction with other objects/ players
