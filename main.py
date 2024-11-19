@@ -39,9 +39,15 @@ def getColours(cls_num):
     (cls_num // len(base_colors)) % 256 for i in range(3)]
     return tuple(color)
 
+# list for targets
+targets = []
 
 # FPS count start
 fps_start = time.time()
+
+# 5 sec delay
+print(f"program starts in 5 seconds.")
+time.sleep(5)
 
 # main loop
 while run:
@@ -95,6 +101,7 @@ while run:
                     # put the class name and confidence on the image
                     cv.putText(screenshot, f'{classes_names[int(box.cls[0])]} {box.conf[0]:.2f}', (x1, y1), cv.FONT_HERSHEY_SIMPLEX, 1, colour, 2)
 
+                    # click on found target
                     # get window ID
                     window_name = 'librewolf'
                     display = Xlib.display.Display()
@@ -117,6 +124,7 @@ while run:
 
                         # press mouse button 1
                         #fake_input(display, X.ButtonPress, 1)
+
 
 
 
