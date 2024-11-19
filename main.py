@@ -1,6 +1,11 @@
 import cv2 as cv
 import numpy as np
 import time
+
+import Xlib
+import Xlib.display
+from Xlib import X
+
 from ultralytics import YOLO
 from window_capture import WindowCapture
 from template_matching import *
@@ -53,7 +58,7 @@ while run:
 
 
         # resize the screenshot
-        screenshot = cv.resize(screenshot, (900,600))
+        #screenshot = cv.resize(screenshot, (900,600))
 
         # re-convert to rgb from hsv
         screenshot = cv.cvtColor(screenshot, cv.COLOR_BGR2RGB)
@@ -89,6 +94,31 @@ while run:
 
                     # put the class name and confidence on the image
                     cv.putText(screenshot, f'{classes_names[int(box.cls[0])]} {box.conf[0]:.2f}', (x1, y1), cv.FONT_HERSHEY_SIMPLEX, 1, colour, 2)
+
+                    # get window ID
+                    window_name = 'librewolf'
+                    display = Xlib.display.Display()
+                    root = display.screen().root
+                    windowIDs = root.get_full_property(display.intern_atom('_NET_CLIENT_LIST'), X.AnyPropertyType).value
+
+                    for windowID in windowIDs:
+                        window = display.create_resource_object('window', windowID)
+                        window_title_property = window.get_full_property(display.intern_atom('_NET_WM_NAME'), 0)
+
+                        if window_title_property and window_name.lower() in window_title_property.value.decode('utf-8').lower():
+                            windowId = windowID
+
+                        # middle coordinates of the rectangle
+                        x3 = int(x1 + ((x2-x1)/2))
+                        y3 = int(y1 + ((y2-y1)/2))
+
+                        # move mouse to X, Y position
+                        root.warp_pointer(int(x3), int(y3))
+
+                        # press mouse button 1
+                        #fake_input(display, X.ButtonPress, 1)
+
+
 
 
         cv.imshow("Screenshot", screenshot)
