@@ -5,6 +5,7 @@ import time
 import Xlib
 import Xlib.display
 from Xlib import X
+from Xlib.ext.xtest import fake_input
 
 from ultralytics import YOLO
 from window_capture import WindowCapture
@@ -86,6 +87,29 @@ while run:
                     # convert to int
                     x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
 
+
+                    # middle coordinates of the rectangle
+                    x3 = int(x1 + ((x2-x1)/2))
+                    y3 = int(y1 + ((y2-y1)/2))
+                    # middle coordinates of the player character
+                    pY = int(screenshot.shape[0] / 2)
+                    pX = int(screenshot.shape[1] / 2)
+                    player_pos = ((pX + pY), pX, pY)
+
+
+                    # adding a tuple with the x and y sum for sorting
+                    # if list gets to big, update list
+                    if (len(targets)/3) >= 21.0:
+                        targets.clear()
+                        targets.append(((x3+y3), x3, y3))
+                    else:
+                        targets.append(((x3+y3), x3, y3))
+
+
+                    # fetch closest target to player coordinates
+                    closest_target = min(targets, key=lambda y: abs(y[0]-player_pos[0]))
+
+
                     # get the class
                     cls = int(box.cls[0])
 
@@ -115,21 +139,18 @@ while run:
                         if window_title_property and window_name.lower() in window_title_property.value.decode('utf-8').lower():
                             windowId = windowID
 
-                        # middle coordinates of the rectangle
-                        x3 = int(x1 + ((x2-x1)/2))
-                        y3 = int(y1 + ((y2-y1)/2))
 
                         # move mouse to X, Y position
-                        root.warp_pointer(int(x3), int(y3))
+                        root.warp_pointer(closest_target[1],closest_target[2])
 
-                        # press mouse button 1
-                        #fake_input(display, X.ButtonPress, 1)
-
-
+                        # press mouse button 1 (shoot)
+                        fake_input(display, X.ButtonPress, 1)
 
 
 
-        cv.imshow("Screenshot", screenshot)
+
+
+        #cv.imshow("Screenshot", screenshot)
 
         key = cv.waitKey(1)
         if key == ord('q'):
