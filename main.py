@@ -91,23 +91,26 @@ while run:
                     # middle coordinates of the rectangle
                     x3 = int(x1 + ((x2-x1)/2))
                     y3 = int(y1 + ((y2-y1)/2))
-                    # middle coordinates of the player character
-                    pY = int(screenshot.shape[0] / 2)
-                    pX = int(screenshot.shape[1] / 2)
-                    player_pos = ((pX + pY), pX, pY)
 
+                    # middle coordinates of the player character
+                    pX = int(screenshot.shape[1] / 2)
+                    pY = int(screenshot.shape[0] / 2)
+                    player_pos = (pX, pY)
+
+
+                    # FIX: works, but not 100%. Still very janky and buggy.
 
                     # adding a tuple with the x and y sum for sorting
                     # if list gets to big, update list
-                    if (len(targets)/3) >= 21.0:
+                    # NOTE: smaller list works better
+                    if (len(targets)/3) >= 10.0:
                         targets.clear()
-                        targets.append(((x3+y3), x3, y3))
+                        targets.append((x3, y3))
                     else:
-                        targets.append(((x3+y3), x3, y3))
-
+                        targets.append((x3, y3))
 
                     # fetch closest target to player coordinates
-                    closest_target = min(targets, key=lambda y: abs(y[0]-player_pos[0]))
+                    closest_target = min(targets, key=lambda y: abs( (y[0] + y[1]) - (player_pos[0] + player_pos[1]) ))
 
 
                     # get the class
@@ -141,7 +144,7 @@ while run:
 
 
                         # move mouse to X, Y position
-                        root.warp_pointer(closest_target[1],closest_target[2])
+                        root.warp_pointer(closest_target[0],closest_target[1])
 
                         # press mouse button 1 (shoot)
                         fake_input(display, X.ButtonPress, 1)
