@@ -61,8 +61,7 @@ fps_start = time.time()
 targets = []
 targets_update = []
 
-cycle = 0
-#global closest_target
+
 
 # main loop
 while run:
@@ -117,9 +116,10 @@ while run:
 
 
 
-                    # auto shoot nearest found target
-                    # adding a tuple with the x and y sum for sorting
-                    # if list gets to big, update list
+                    ### auto aim at nearest target ###
+                    # FIX: still janky and unprecise
+
+                    # fill both lists with targets
                     if (len(targets_update) < 42) and (len(targets) < 42):
                         targets_update.append( (x3,y3) )
                         targets.append( (x3,y3) )
@@ -127,6 +127,8 @@ while run:
                     # fetch closest target to player coordinates
                     closest_target = min(targets, key=lambda y: abs( (y[0]+y[1]) - (player_pos[0]+player_pos[1]) ))
 
+                    # if closest target is not in updated list, delete
+                    # and update currently used target list
                     if closest_target not in targets_update:
                         targets = targets_update
                         targets_update.clear()
