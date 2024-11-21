@@ -41,7 +41,7 @@ development of this tool.
 <= opencv-contrib-python 4.10.0.84 \
 <= xlib                  0.21 \
 
-YOLOv8 \
+*YOLOv8* \
 
 <= ultralytics           8.2.103
 
@@ -49,4 +49,5 @@ YOLOv8 \
 
 - Image data (small)
 - Increased image detection using YOLO.
+- Basic Aim-bot
 
