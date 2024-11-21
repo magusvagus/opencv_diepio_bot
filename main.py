@@ -59,6 +59,10 @@ fps_start = time.time()
 
 # list for targets
 targets = []
+targets_update = []
+
+cycle = 0
+#global closest_target
 
 # main loop
 while run:
@@ -113,19 +117,21 @@ while run:
 
 
 
-                    # FIX: works, but not 100%. Still very janky and buggy.
-
+                    # auto shoot nearest found target
                     # adding a tuple with the x and y sum for sorting
                     # if list gets to big, update list
-                    # NOTE: smaller list works better
-                    if (len(targets)/3) >= 10.0:
-                        targets.clear()
-                        targets.append( (x3,y3) )
-                    else:
+                    if (len(targets_update) < 42) and (len(targets) < 42):
+                        targets_update.append( (x3,y3) )
                         targets.append( (x3,y3) )
 
                     # fetch closest target to player coordinates
                     closest_target = min(targets, key=lambda y: abs( (y[0]+y[1]) - (player_pos[0]+player_pos[1]) ))
+
+                    if closest_target not in targets_update:
+                        targets = targets_update
+                        targets_update.clear()
+                    elif len(targets_update) > 22:
+                        targets_update.clear()
 
 
 
@@ -158,9 +164,8 @@ while run:
                         window = display.create_resource_object('window', windowID)
                         window_title_property = window.get_full_property(display.intern_atom('_NET_WM_NAME'), 0)
 
-                        if window_title_property and window_name.lower() in window_title_property.value.decode('utf-8').lower():
+                        if window_title_property and window_name.lower() in window_title_property.value.decode('utf-8').lower() and (len(targets) == 42):
                             windowId = windowID
-
 
 
                         # move mouse to X, Y position
