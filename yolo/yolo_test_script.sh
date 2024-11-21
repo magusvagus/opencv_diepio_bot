@@ -3,7 +3,7 @@
 # make sure to use absolute file paths
 
 # path to model
-model=model=/home/ed/programming/python/opencv_bot/opencv_diepio_bot/runs/detect/yolo_v8n_diep/weights/best.pt
+model=model=/home/ed/programming/python/opencv_bot/opencv_diepio_bot/runs/detect/yolo_v8n_diep15k/weights/best.pt
 
 # path to dataset
 data=data=/home/ed/programming/python/opencv_bot/opencv_diepio_bot/yolo/config.yaml
