@@ -119,8 +119,10 @@ while run:
                     ### auto aim at nearest target ###
                     # NOTE: still slow but better, distance calculation must be improved since its not always picking nearest target
 
+                    # add current X, Y coordinates to targets
                     targets.append( (x3, y3) )
 
+                    # if mew list has more than 5 targets filter the nearest value to player_pos
                     if len(targets) > 5:
                         closest_target = min(targets, key=lambda y: abs( (y[0] + y[1]) - (pX + pY)) )
 
