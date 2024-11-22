@@ -20,7 +20,7 @@ development of this tool.
 | class_2  |   12    |    26   |       1    |       0   |    0.52  |    0.132  |
 
 - Simple movement and aiming (in developement)
-- Interaction with other objects/ players
+- Interaction with other NPCs/ players
 - automated upgrading and leveling
 
 2. Fine tuning of basic functions
@@ -29,7 +29,6 @@ development of this tool.
 - Polished aiming
 
 3. Simple terminal UI using python curses
-
 4. Performance tweaks
 
 
@@ -41,7 +40,7 @@ development of this tool.
 <= opencv-contrib-python 4.10.0.84 \
 <= xlib                  0.21 \
 
-*YOLOv8* \
+*YOLOv8*
 
 <= ultralytics           8.2.103
 
