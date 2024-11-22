@@ -57,10 +57,10 @@ fps_start = time.time()
 
 
 
-# list for targets
+# variables for targets
 targets = []
 targets_update = []
-
+closest_target = None
 
 
 # main loop
@@ -106,8 +106,8 @@ while run:
 
 
                     # middle coordinates of the rectangle
-                    x3 = int(x1 + ((x2-x1)/2))
-                    y3 = int(y1 + ((y2-y1)/2))
+                    x3 = int(x1 + ( (x2-x1)/2) )
+                    y3 = int(y1 + ( (y2-y1)/2) )
 
                     # middle coordinates of the player character
                     pX = int(screenshot.shape[1] / 2)
@@ -117,23 +117,14 @@ while run:
 
 
                     ### auto aim at nearest target ###
-                    # FIX: still janky and unprecise
+                    # NOTE: still slow but better, distance calculation must be improved since its not always picking nearest target
 
-                    # fill both lists with targets
-                    if (len(targets_update) < 42) and (len(targets) < 42):
-                        targets_update.append( (x3,y3) )
-                        targets.append( (x3,y3) )
+                    targets.append( (x3, y3) )
 
-                    # fetch closest target to player coordinates
-                    closest_target = min(targets, key=lambda y: abs( (y[0]+y[1]) - (player_pos[0]+player_pos[1]) ))
+                    if len(targets) > 5:
+                        closest_target = min(targets, key=lambda y: abs( (y[0] + y[1]) - (pX + pY)) )
 
-                    # if closest target is not in updated list, delete
-                    # and update currently used target list
-                    if closest_target not in targets_update:
-                        targets = targets_update
-                        targets_update.clear()
-                    elif len(targets_update) > 22:
-                        targets_update.clear()
+                        targets.clear()
 
 
 
@@ -166,15 +157,18 @@ while run:
                         window = display.create_resource_object('window', windowID)
                         window_title_property = window.get_full_property(display.intern_atom('_NET_WM_NAME'), 0)
 
-                        if window_title_property and window_name.lower() in window_title_property.value.decode('utf-8').lower() and (len(targets) == 42):
+                        if window_title_property and window_name.lower() in window_title_property.value.decode('utf-8').lower():
                             windowId = windowID
 
 
                         # move mouse to X, Y position
-                        root.warp_pointer(closest_target[0],closest_target[1])
+                        if closest_target == None:
+                            pass
+                        else:
+                            root.warp_pointer(closest_target[0],closest_target[1])
 
-                        # press mouse button 1 (shoot)
-                        fake_input(display, X.ButtonPress, 1)
+                            # press mouse button 1 (shoot)
+                            fake_input(display, X.ButtonPress, 1)
 
 
 
