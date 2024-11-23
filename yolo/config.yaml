@@ -11,4 +11,8 @@ val: /home/ed/programming/python/opencv_bot/opencv_diepio_bot/yolo/images/val/
 nc: 4
 
 # names of classes
-name: ["y_cube", "r_tringle", "b_pentagon", "enemy_npc1" ]
+names:
+    0: cube
+    1: triangle
+    2: pentagon
+    3: enemy_npc1

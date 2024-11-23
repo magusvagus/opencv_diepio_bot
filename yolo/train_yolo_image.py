@@ -9,7 +9,7 @@ model = YOLO("yolov8n.yaml")
 # Train the model using the 'config.yaml' dataset for 100 epochs
 # epochs = rounds of training
 # imgsz = resize image to set size
-results = model.train(data="config.yaml", epochs=15000, imgsz=640, name='yolo_v8n_diep15k')
+results = model.train(data="config.yaml", epochs=10000, imgsz=640, name='yolo_v8n_diep10k')
 
 # Evaluate the model's performance on the validation set
 #results = model.val()
