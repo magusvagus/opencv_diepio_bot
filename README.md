@@ -14,10 +14,11 @@ development of this tool.
 
 | Class    | Images  |Instances|   Box(P    |     R     |   mAP50  | mAP50-95) |
 |:---------|:-------:|:-------:|:----------:|:---------:|:--------:|----------:|
-| all      |   21    |   164   |   0.716    |   0.499   |   0.647  |    0.252  |
-| class_0  |   20    |    59   |    0.62    |   0.576   |   0.584  |    0.217  |
-| class_1  |   21    |    79   |   0.528    |    0.92   |   0.836  |    0.406  |
-| class_2  |   12    |    26   |       1    |       0   |    0.52  |    0.132  |
+| all      |   22    |   168   |   0.575    |   0.654   |   0.711  |    0.407  |
+| cube     |   21    |    60   |   0.598    |       1   |   0.918  |    0.621  |
+| triangle |   22    |    80   |       1    |   0.653   |   0.959  |    0.613  |
+| pentagon |   13    |    27   |   0.703    |   0.963   |   0.968  |    0.394  |
+| enemy_npc|    1    |     1   |       0    |       0   |       0  |        0  |
 
 - Simple movement and aiming (in developement)
 - Interaction with other NPCs/ players
@@ -40,7 +41,7 @@ development of this tool.
 <= opencv-contrib-python 4.10.0.84 \
 <= xlib                  0.21 \
 
-*YOLOv8*
+**YOLOv8**
 
 <= ultralytics           8.2.103
 
