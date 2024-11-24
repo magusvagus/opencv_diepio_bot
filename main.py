@@ -31,7 +31,7 @@ run = True
 
 
 # load YOLO AI image
-yolo = YOLO('./runs/detect/yolo_v8n_diep15k/weights/best.pt')
+yolo = YOLO('./runs/detect/yolo_v8n_diep2k/weights/best.pt')
 
 
 
