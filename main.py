@@ -61,7 +61,7 @@ fps_start = time.time()
 targets = []
 targets_update = []
 closest_target = None
-
+nearest = (0,0)
 
 # main loop
 while run:
@@ -104,6 +104,7 @@ while run:
                     x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
 
 
+                    id = box.id
 
                     # middle coordinates of the rectangle
                     x3 = int(x1 + ( (x2-x1)/2) )
@@ -120,14 +121,13 @@ while run:
                     # NOTE: still slow but better, distance calculation must be improved since its not always picking nearest target
 
                     # add current X, Y coordinates to targets
-                    targets.append( (x3, y3) )
-
-                    # if mew list has more than 5 targets filter the nearest value to player_pos
-                    if len(targets) > 5:
-                        closest_target = min(targets, key=lambda y: abs( (y[0] + y[1]) - (pX + pY)) )
-
-                        targets.clear()
-
+                    # targets.append( (x3, y3) )
+                    #
+                    # # if mew list has more than 5 targets filter the nearest value to player_pos
+                    # if len(targets) > 5:
+                    #     closest_target = min(targets, key=lambda y: abs( (y[0] + y[1]) - (pX + pY)) )
+                    #
+                    #     targets.clear()
 
 
                     # get the class
@@ -135,6 +135,27 @@ while run:
 
                     # get the class name
                     class_name = classes_names[cls]
+
+                    distance = ((x3 - pX) **2 + (y3 - pY) **2) **.5
+
+                    if closest_target == None:
+                        closest_target =  (x3 , y3)
+
+                    elif closest_target != None:
+                        # get distance
+                        compare = ((closest_target[0] - pX) **2 + (closest_target[1] - pY) **2) **.5
+
+                        if distance < compare:
+                            closest_target = (x3, y3)
+
+
+                    print(f"Class name: {class_name}")
+                    print(f"ID: {id}")
+                    print(f"Distance: {distance}")
+                    print(f"CLS: {cls}")
+                    print(f"X Y: {x3, y3}")
+
+
 
                     # get the respective colour
                     colour = getColours(cls)
