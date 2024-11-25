@@ -79,7 +79,7 @@ while True:
     #cv.waitKey()
 
     # save image
-    cv.imwrite(f"./screenshots_diepio/gameplay_screenshots/{fileName}", image)
+    cv.imwrite(f"../screenshots_diepio/gameplay_screenshots/{fileName}", image)
 
 
 

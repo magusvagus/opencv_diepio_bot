@@ -9,8 +9,6 @@ from Xlib.ext.xtest import fake_input
 
 from ultralytics import YOLO
 from window_capture import WindowCapture
-from template_matching import *
-from hsv_thresholding import *
 
 
 # define window/ app to capture
@@ -61,6 +59,7 @@ fps_start = time.time()
 targets = []
 targets_update = []
 closest_target = None
+count =0
 
 # main loop
 while run:
@@ -124,7 +123,6 @@ while run:
 
 
                     ## auto-aim at nearest target ##
-                    # FIX: dosent reset distance after finding closest target
 
                     # get distance using Euclidean distance formula
                     distance = ((x3 - pX) **2 + (y3 - pY) **2) **.5
@@ -186,6 +184,9 @@ while run:
 
             # press mouse button 1 (shoot)
             fake_input(display, X.ButtonPress, 1)
+
+            # reset aim bot
+            closest_target = None
 
 
 
