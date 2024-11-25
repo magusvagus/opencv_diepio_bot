@@ -61,7 +61,6 @@ fps_start = time.time()
 targets = []
 targets_update = []
 closest_target = None
-nearest = (0,0)
 
 # main loop
 while run:
@@ -104,7 +103,6 @@ while run:
                     x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
 
 
-                    id = box.id
 
                     # middle coordinates of the rectangle
                     x3 = int(x1 + ( (x2-x1)/2) )
@@ -117,97 +115,93 @@ while run:
 
 
 
-                    ### auto aim at nearest target ###
-                    # NOTE: still slow but better, distance calculation must be improved since its not always picking nearest target
-
-                    # add current X, Y coordinates to targets
-                    # targets.append( (x3, y3) )
-                    #
-                    # # if mew list has more than 5 targets filter the nearest value to player_pos
-                    # if len(targets) > 5:
-                    #     closest_target = min(targets, key=lambda y: abs( (y[0] + y[1]) - (pX + pY)) )
-                    #
-                    #     targets.clear()
-
-
                     # get the class
                     cls = int(box.cls[0])
 
                     # get the class name
                     class_name = classes_names[cls]
 
+
+
+                    ## auto-aim at nearest target ##
+                    # FIX: dosent reset distance after finding closest target
+
+                    # get distance using Euclidean distance formula
                     distance = ((x3 - pX) **2 + (y3 - pY) **2) **.5
 
                     if closest_target == None:
                         closest_target =  (x3 , y3)
 
                     elif closest_target != None:
-                        # get distance
+                        # get new distance for comparison
                         compare = ((closest_target[0] - pX) **2 + (closest_target[1] - pY) **2) **.5
 
                         if distance < compare:
                             closest_target = (x3, y3)
 
 
-                    print(f"Class name: {class_name}")
-                    print(f"ID: {id}")
-                    print(f"Distance: {distance}")
-                    print(f"CLS: {cls}")
-                    print(f"X Y: {x3, y3}")
+
+                    # additional info print out
+                    print("##########################")
+                    print(f"Class name: {class_name}\n")
+                    print(f"ID: {id}\n")
+                    print(f"Distance: {distance}\n")
+                    print(f"CLS: {cls}\n")
+                    print(f"X Y: {x3, y3}\n")
 
 
 
-                    # get the respective colour
+                    # get the respective color
                     colour = getColours(cls)
 
                     # draw the rectangle
                     cv.rectangle(screenshot, (x1,y1), (x2,y2), colour, 2)
 
                     # put the class name and confidence on the image
-                    cv.putText(screenshot, f'{classes_names[int(box.cls[0])]} {box.conf[0]:.2f}', (x1, y1), cv.FONT_HERSHEY_SIMPLEX, 1, colour, 2)
+                    cv.putText(screenshot, f'{classes_names[int(box.cls[0])]} {box.conf[0]:.2f}', (x1, y1), cv.FONT_HERSHEY_SIMPLEX, 1, colour, 1)
 
 
 
-                    # click on found target
-                    # get window ID
-                    # FIX: no need to do that a second time
-                    window_name = 'librewolf'
-                    display = Xlib.display.Display()
-                    root = display.screen().root
-                    windowIDs = root.get_full_property(display.intern_atom('_NET_CLIENT_LIST'), X.AnyPropertyType).value
+    # click on found target
+    # get window ID
+    # FIX: no need to do that a second time
+    window_name = 'librewolf'
+    display = Xlib.display.Display()
+    root = display.screen().root
+    windowIDs = root.get_full_property(display.intern_atom('_NET_CLIENT_LIST'), X.AnyPropertyType).value
 
-                    for windowID in windowIDs:
-                        window = display.create_resource_object('window', windowID)
-                        window_title_property = window.get_full_property(display.intern_atom('_NET_WM_NAME'), 0)
+    for windowID in windowIDs:
+        window = display.create_resource_object('window', windowID)
+        window_title_property = window.get_full_property(display.intern_atom('_NET_WM_NAME'), 0)
 
-                        if window_title_property and window_name.lower() in window_title_property.value.decode('utf-8').lower():
-                            windowId = windowID
-
-
-                        # move mouse to X, Y position
-                        if closest_target == None:
-                            pass
-                        else:
-                            root.warp_pointer(closest_target[0],closest_target[1])
-
-                            # press mouse button 1 (shoot)
-                            fake_input(display, X.ButtonPress, 1)
+        if window_title_property and window_name.lower() in window_title_property.value.decode('utf-8').lower():
+            windowId = windowID
 
 
+        # move mouse to X, Y position
+        if closest_target == None:
+            pass
+        else:
+            root.warp_pointer(closest_target[0],closest_target[1])
 
-        # show comuter vision on seperate window
-        #cv.imshow("Screenshot", screenshot)
-
-        key = cv.waitKey(1)
-        if key == ord('q'):
-            run = False
-            windowCapture.stop()
+            # press mouse button 1 (shoot)
+            fake_input(display, X.ButtonPress, 1)
 
 
 
-        # FPS count stop
-        fps_end = ( 1 / (time.time() - fps_start) )
-        print(f"FPS: %f" % fps_end)
+    # show comuter vision on seperate window
+    #cv.imshow("Screenshot", screenshot)
+
+    key = cv.waitKey(1)
+    if key == ord('q'):
+        run = False
+        windowCapture.stop()
+
+
+
+    # FPS count stop
+    fps_end = ( 1 / (time.time() - fps_start) )
+    print(f"FPS: %f" % fps_end)
 
 
 
