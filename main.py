@@ -55,11 +55,8 @@ fps_start = time.time()
 
 
 
-# variables for targets
-targets = []
-targets_update = []
+# declaring variables for targets
 closest_target = None
-count =0
 
 # main loop
 while run:
@@ -130,22 +127,17 @@ while run:
                     if closest_target == None:
                         closest_target =  (x3 , y3)
 
-                    elif closest_target != None:
+                    else:
                         # get new distance for comparison
                         compare = ((closest_target[0] - pX) **2 + (closest_target[1] - pY) **2) **.5
 
                         if distance < compare:
                             closest_target = (x3, y3)
 
-
-
-                    # additional info print out
-                    print("##########################")
-                    print(f"Class name: {class_name}\n")
-                    print(f"ID: {id}\n")
-                    print(f"Distance: {distance}\n")
-                    print(f"CLS: {cls}\n")
-                    print(f"X Y: {x3, y3}\n")
+                            # print current target info
+                            print(f"Class name: {class_name}\n")
+                            print(f"Current target coordinates: {closest_target[0], closest_target[1]}\n")
+                            print(f"Distance: {distance}\n")
 
 
 
@@ -200,9 +192,9 @@ while run:
 
 
 
-    # FPS count stop
+    # FPS count stop && show
     fps_end = ( 1 / (time.time() - fps_start) )
-    print(f"FPS: %f" % fps_end)
+    print(f"\nFPS: %f\n" % fps_end)
 
 
 
