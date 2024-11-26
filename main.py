@@ -55,6 +55,24 @@ fps_start = time.time()
 
 
 
+# stats levels
+# current test build -> Octo-tank: 0/2/3/0/7/7/7/7
+# Overlord: 0/2/3/7/7/7/0/7
+health_regen       = 0
+max_health         = 0
+body_damage        = 0
+bullet_speed       = 0
+bullet_penetration = 0
+bullet_damage      = 0
+reload             = 0
+movement_speed     = 0
+
+# leveling paths
+# Tank -> Twin   -> Quad     -> Octotank
+# Tank -> Sniper -> Overseer -> Overlord
+
+
+
 # declaring variables for targets
 closest_target = None
 
