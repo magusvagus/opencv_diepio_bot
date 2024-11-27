@@ -46,7 +46,9 @@ def getColours(cls_num):
     return tuple(color)
 
 
+
 # move towards target
+# BUG: stops moving after a while, can be caused by key realeses
 def movement(display, distance, target ,player):
 
     # keyboard key push and release
@@ -227,9 +229,11 @@ while run:
                 pass
             else:
 
+                # NOTE: for testing (will be removed later)
                 pX = int(screenshot.shape[1] / 2)
                 pY = int(screenshot.shape[0] / 2)
                 distance = ((closest_target[0] - pX) **2 + (closest_target[1] - pY) **2) **.5
+
 
                 root.warp_pointer(closest_target[0],closest_target[1])
 
@@ -246,11 +250,13 @@ while run:
 
 
     # finnish after a minute if keyboard stops working
+    # on DWM restart helps
     if ((time.time() / 60) - (fps_start / 60)) >= 1:
         print("time is over")
         exit()
     else:
         pass
+
 
 
     # show comuter vision on seperate window
