@@ -1,11 +1,14 @@
 import cv2 as cv
 import numpy as np
 import time
+import sys
 
 import Xlib
+import Xlib.XK
 import Xlib.display
 from Xlib import X
 from Xlib.ext.xtest import fake_input
+
 
 from ultralytics import YOLO
 from window_capture import WindowCapture
@@ -41,6 +44,39 @@ def getColours(cls_num):
     color = [base_colors[color_index][i] + increments[color_index][i] * 
     (cls_num // len(base_colors)) % 256 for i in range(3)]
     return tuple(color)
+
+
+# move towards target
+def movement(display, distance, target ,player):
+
+    # keyboard key push and release
+    # Xlib.ext.xtest.fake_input(window, Xlib.X.KeyPress, keycode)
+    # Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+
+    if distance > 50:
+        if (target[0] + 100) < player[0]:
+            keysym = Xlib.XK.string_to_keysym('Left')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyPress, keycode)
+
+        elif (target[0] + 100) > player[0]:
+            keysym = Xlib.XK.string_to_keysym('Right')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyPress, keycode)
+
+        elif (target[1] + 100) < player[1]:
+            keysym = Xlib.XK.string_to_keysym('Down')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyPress, keycode)
+
+        elif (target[1] + 100) > player[1]:
+            keysym = Xlib.XK.string_to_keysym('Up')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyPress, keycode)
 
 
 
@@ -170,34 +206,51 @@ while run:
 
 
 
-    # click on found target
-    # get window ID
-    # FIX: no need to do that a second time
-    window_name = 'librewolf'
-    display = Xlib.display.Display()
-    root = display.screen().root
-    windowIDs = root.get_full_property(display.intern_atom('_NET_CLIENT_LIST'), X.AnyPropertyType).value
+        # click on found target
+        # get window ID
+        # FIX: no need to do that a second time
+        window_name = 'librewolf'
+        display = Xlib.display.Display()
+        root = display.screen().root
+        windowIDs = root.get_full_property(display.intern_atom('_NET_CLIENT_LIST'), X.AnyPropertyType).value
 
-    for windowID in windowIDs:
-        window = display.create_resource_object('window', windowID)
-        window_title_property = window.get_full_property(display.intern_atom('_NET_WM_NAME'), 0)
+        for windowID in windowIDs:
+            window = display.create_resource_object('window', windowID)
+            window_title_property = window.get_full_property(display.intern_atom('_NET_WM_NAME'), 0)
 
-        if window_title_property and window_name.lower() in window_title_property.value.decode('utf-8').lower():
-            windowId = windowID
+            if window_title_property and window_name.lower() in window_title_property.value.decode('utf-8').lower():
+                windowId = windowID
 
 
-        # move mouse to X, Y position
-        if closest_target == None:
-            pass
-        else:
-            root.warp_pointer(closest_target[0],closest_target[1])
+            # move mouse to X, Y position
+            if closest_target == None:
+                pass
+            else:
 
-            # press mouse button 1 (shoot)
-            fake_input(display, X.ButtonPress, 1)
+                pX = int(screenshot.shape[1] / 2)
+                pY = int(screenshot.shape[0] / 2)
+                distance = ((closest_target[0] - pX) **2 + (closest_target[1] - pY) **2) **.5
 
-            # reset aim bot
-            closest_target = None
+                root.warp_pointer(closest_target[0],closest_target[1])
 
+                # press mouse button 1 (shoot)
+                fake_input(display, X.ButtonPress, 1)
+                fake_input(display, X.ButtonRelease, 1)
+
+                # move to target
+                movement(display, distance, closest_target, (pX, pY))
+
+                # reset aim bot
+                closest_target = None
+
+
+
+    # finnish after a minute if keyboard stops working
+    if ((time.time() / 60) - (fps_start / 60)) >= 1:
+        print("time is over")
+        exit()
+    else:
+        pass
 
 
     # show comuter vision on seperate window
