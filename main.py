@@ -55,30 +55,97 @@ def movement(display, distance, target ,player):
     # Xlib.ext.xtest.fake_input(window, Xlib.X.KeyPress, keycode)
     # Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
 
-    if distance > 50:
-        if (target[0] + 100) < player[0]:
-            keysym = Xlib.XK.string_to_keysym('Left')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
-            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyPress, keycode)
+    if distance > 25:
+        if target[0] < player[0]:
 
-        elif (target[0] + 100) > player[0]:
-            keysym = Xlib.XK.string_to_keysym('Right')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
-            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyPress, keycode)
-
-        elif (target[1] + 100) < player[1]:
             keysym = Xlib.XK.string_to_keysym('Down')
             keycode = display.keysym_to_keycode(keysym)
             Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
-            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyPress, keycode)
-
-        elif (target[1] + 100) > player[1]:
+            keysym = Xlib.XK.string_to_keysym('Right')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
             keysym = Xlib.XK.string_to_keysym('Up')
             keycode = display.keysym_to_keycode(keysym)
             Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            keysym = Xlib.XK.string_to_keysym('Left')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+
+            keysym = Xlib.XK.string_to_keysym('Left')
+            keycode = display.keysym_to_keycode(keysym)
             Xlib.ext.xtest.fake_input(window, Xlib.X.KeyPress, keycode)
+
+        elif target[1] < player[1]:
+
+            keysym = Xlib.XK.string_to_keysym('Down')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            keysym = Xlib.XK.string_to_keysym('Right')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            keysym = Xlib.XK.string_to_keysym('Up')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            keysym = Xlib.XK.string_to_keysym('Left')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+
+            keysym = Xlib.XK.string_to_keysym('Up')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyPress, keycode)
+
+        elif target[0] > player[0]:
+
+            keysym = Xlib.XK.string_to_keysym('Down')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            keysym = Xlib.XK.string_to_keysym('Right')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            keysym = Xlib.XK.string_to_keysym('Up')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            keysym = Xlib.XK.string_to_keysym('Left')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+
+            keysym = Xlib.XK.string_to_keysym('Right')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyPress, keycode)
+
+        elif target[1] > player[1]:
+
+            keysym = Xlib.XK.string_to_keysym('Down')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            keysym = Xlib.XK.string_to_keysym('Right')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            keysym = Xlib.XK.string_to_keysym('Up')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            keysym = Xlib.XK.string_to_keysym('Left')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+
+            keysym = Xlib.XK.string_to_keysym('Down')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyPress, keycode)
+
+        elif target == None:
+
+            keysym = Xlib.XK.string_to_keysym('Down')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            keysym = Xlib.XK.string_to_keysym('Right')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            keysym = Xlib.XK.string_to_keysym('Up')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
+            keysym = Xlib.XK.string_to_keysym('Left')
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
 
 
 
