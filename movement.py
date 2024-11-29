@@ -6,6 +6,16 @@ from Xlib.ext.xtest import fake_input
 
 # move towards target
 # NOTE: HORRIBLE protoype/ proof of concept, needs to be further improved.
+
+def keyboardReset(display, keys = ['Up','Down','Left','Right']):
+    # keys = ['Down', 'Up', 'Left', 'Right']
+    for key in keys:
+        keysym = Xlib.XK.string_to_keysym(key)
+        keycode = display.keysym_to_keycode(keysym)
+        Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
+
+    
+
 def movement(display, distance, target ,player):
 
     # keyboard key push and release example code
@@ -22,18 +32,7 @@ def movement(display, distance, target ,player):
         if target[0] < player[0]:
 
             # reset all previous pushed keys
-            keysym = Xlib.XK.string_to_keysym('Down')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-            keysym = Xlib.XK.string_to_keysym('Right')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-            keysym = Xlib.XK.string_to_keysym('Up')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-            keysym = Xlib.XK.string_to_keysym('Left')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
+            keyboardReset(display)
 
             # push key
             keysym = Xlib.XK.string_to_keysym('Left')
@@ -44,18 +43,7 @@ def movement(display, distance, target ,player):
         elif target[1] < player[1]:
 
             # reset all previous pushed keys
-            keysym = Xlib.XK.string_to_keysym('Down')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-            keysym = Xlib.XK.string_to_keysym('Right')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-            keysym = Xlib.XK.string_to_keysym('Up')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-            keysym = Xlib.XK.string_to_keysym('Left')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
+            keyboardReset(display)
 
             # push key
             keysym = Xlib.XK.string_to_keysym('Up')
@@ -66,18 +54,7 @@ def movement(display, distance, target ,player):
         elif target[0] > player[0]:
 
             # reset all previous pushed keys
-            keysym = Xlib.XK.string_to_keysym('Down')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-            keysym = Xlib.XK.string_to_keysym('Right')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-            keysym = Xlib.XK.string_to_keysym('Up')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-            keysym = Xlib.XK.string_to_keysym('Left')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
+            keyboardReset(display)
 
             # push key
             keysym = Xlib.XK.string_to_keysym('Right')
@@ -88,18 +65,7 @@ def movement(display, distance, target ,player):
         elif target[1] > player[1]:
 
             # reset all previous pushed keys
-            keysym = Xlib.XK.string_to_keysym('Down')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-            keysym = Xlib.XK.string_to_keysym('Right')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-            keysym = Xlib.XK.string_to_keysym('Up')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-            keysym = Xlib.XK.string_to_keysym('Left')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
+            keyboardReset(display)
 
             # push key
             keysym = Xlib.XK.string_to_keysym('Down')
@@ -109,16 +75,5 @@ def movement(display, distance, target ,player):
         elif target == None:
 
             # reset all previous pushed keys
-            keysym = Xlib.XK.string_to_keysym('Down')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-            keysym = Xlib.XK.string_to_keysym('Right')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-            keysym = Xlib.XK.string_to_keysym('Up')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-            keysym = Xlib.XK.string_to_keysym('Left')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
+            keyboardReset(display)
 
