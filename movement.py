@@ -25,8 +25,11 @@ def movement(display, target ,player):
     # Xlib.ext.xtest.fake_input(window, Xlib.X.KeyPress, keycode)
     # Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
 
+    # FIX: this seems to prever left right movement, probably due to
+    # fact that there is no buffer zone in wich the bot can stop. Its
+    # either to big or to low.
 
-    # NOTE: placeholder distance for testing, optimal distance still to be found 
+    # NOTE: placeholder distance for testing, optimal distance still to be found (assuming the whole function wont be re-written)
     distance = 20
 
     # trigger event based on distance

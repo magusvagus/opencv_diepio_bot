@@ -209,7 +209,7 @@ while run:
                 fake_input(display, X.ButtonRelease, 1)
 
                 # move to target
-                movement(display, distance, closest_target, (pX, pY))
+                movement(display, closest_target, (pX, pY))
 
                 # reset aim bot
                 closest_target = None
