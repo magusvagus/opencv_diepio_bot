@@ -8,7 +8,7 @@ from Xlib.ext.xtest import fake_input
 # NOTE: HORRIBLE protoype/ proof of concept, needs to be further improved.
 
 def keyboardReset(display, keys = ['Up','Down','Left','Right']):
-    # keys = ['Down', 'Up', 'Left', 'Right']
+    # iterate over each given key and release it
     for key in keys:
         keysym = Xlib.XK.string_to_keysym(key)
         keycode = display.keysym_to_keycode(keysym)
@@ -16,7 +16,7 @@ def keyboardReset(display, keys = ['Up','Down','Left','Right']):
 
     
 
-def movement(display, distance, target ,player):
+def movement(display, target ,player):
 
     # keyboard key push and release example code
 
@@ -25,55 +25,58 @@ def movement(display, distance, target ,player):
     # Xlib.ext.xtest.fake_input(window, Xlib.X.KeyPress, keycode)
     # Xlib.ext.xtest.fake_input(window, Xlib.X.KeyRelease, keycode)
 
+
+    # NOTE: placeholder distance for testing, optimal distance still to be found 
+    distance = 20
+
     # trigger event based on distance
-    if distance > 25:
 
-        # if target X axis is SMALLER player X axis move towards it
-        if target[0] < player[0]:
+    # if target X axis is SMALLER player X axis move towards it
+    if target[0] <= (player[0] - distance):
 
-            # reset all previous pushed keys
-            keyboardReset(display)
+        # reset all previous pushed keys
+        keyboardReset(display)
 
-            # push key
-            keysym = Xlib.XK.string_to_keysym('Left')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
+        # push key
+        keysym = Xlib.XK.string_to_keysym('Left')
+        keycode = display.keysym_to_keycode(keysym)
+        Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
 
-        # if target Y axis is SMALLER player Y axis move towards it
-        elif target[1] < player[1]:
+    # if target Y axis is SMALLER player Y axis move towards it
+    elif target[1] < (player[1] - distance):
 
-            # reset all previous pushed keys
-            keyboardReset(display)
+        # reset all previous pushed keys
+        keyboardReset(display)
 
-            # push key
-            keysym = Xlib.XK.string_to_keysym('Up')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
+        # push key
+        keysym = Xlib.XK.string_to_keysym('Up')
+        keycode = display.keysym_to_keycode(keysym)
+        Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
 
-        # if target X axis is BIGGER player X axis move towards it
-        elif target[0] > player[0]:
+    # if target X axis is BIGGER player X axis move towards it
+    elif target[0] > (player[0] + distance):
 
-            # reset all previous pushed keys
-            keyboardReset(display)
+        # reset all previous pushed keys
+        keyboardReset(display)
 
-            # push key
-            keysym = Xlib.XK.string_to_keysym('Right')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
+        # push key
+        keysym = Xlib.XK.string_to_keysym('Right')
+        keycode = display.keysym_to_keycode(keysym)
+        Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
 
-        # if target Y axis is BIGGER player Y axis move towards it
-        elif target[1] > player[1]:
+    # if target Y axis is BIGGER player Y axis move towards it
+    elif target[1] > (player[1] + distance):
 
-            # reset all previous pushed keys
-            keyboardReset(display)
+        # reset all previous pushed keys
+        keyboardReset(display)
 
-            # push key
-            keysym = Xlib.XK.string_to_keysym('Down')
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
+        # push key
+        keysym = Xlib.XK.string_to_keysym('Down')
+        keycode = display.keysym_to_keycode(keysym)
+        Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
 
-        elif target == None:
+    elif target == None:
 
-            # reset all previous pushed keys
-            keyboardReset(display)
+        # reset all previous pushed keys
+        keyboardReset(display)
 
