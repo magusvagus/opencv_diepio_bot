@@ -7,6 +7,24 @@ from Xlib.ext.xtest import fake_input
 # move towards target
 # NOTE: HORRIBLE protoype/ proof of concept, needs to be further improved.
 
+
+
+# WARN: still to be tested!!!
+
+# move into oppsite direction to stop movement
+def movementStop(display, key, range = 2):
+    # push several times for faster stop
+   for i in range(range) 
+        keysym = Xlib.XK.string_to_keysym(key)
+        keycode = display.keysym_to_keycode(keysym)
+        Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
+
+    # release all keys
+   keysym = Xlib.XK.string_to_keysym(key)
+   keycode = display.keysym_to_keycode(keysym)
+   Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
+
+
 def keyboardReset(display, keys = ['Up','Down','Left','Right']):
     # iterate over each given key and release it
     if len(keys) == 1:
@@ -20,7 +38,7 @@ def keyboardReset(display, keys = ['Up','Down','Left','Right']):
             keycode = display.keysym_to_keycode(keysym)
             Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
 
-    
+
 
 def movement(display, target ,player):
 
