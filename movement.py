@@ -27,10 +27,18 @@ def movementStop(display, key, distance = 2):
 
 def keyboardReset(display, keys = ['Up','Down','Left','Right']):
     # iterate over each given key and release it
-    for key in keys:
-        keysym = Xlib.XK.string_to_keysym(key)
+    if type(keys) == "str":
+
+        keysym = Xlib.XK.string_to_keysym(keys)
         keycode = display.keysym_to_keycode(keysym)
         Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
+
+    else:
+
+        for key in keys:
+            keysym = Xlib.XK.string_to_keysym(key)
+            keycode = display.keysym_to_keycode(keysym)
+            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
 
 
 
