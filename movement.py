@@ -12,31 +12,25 @@ from Xlib.ext.xtest import fake_input
 # WARN: still to be tested!!!
 
 # move into oppsite direction to stop movement
-def movementStop(display, key, range = 2):
+def movementStop(display, key, distance = 2):
     # push several times for faster stop
-   for i in range(range) 
+    for i in range(distance):
         keysym = Xlib.XK.string_to_keysym(key)
         keycode = display.keysym_to_keycode(keysym)
         Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
 
     # release all keys
-   keysym = Xlib.XK.string_to_keysym(key)
-   keycode = display.keysym_to_keycode(keysym)
-   Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
+    keysym = Xlib.XK.string_to_keysym(key)
+    keycode = display.keysym_to_keycode(keysym)
+    Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
 
 
 def keyboardReset(display, keys = ['Up','Down','Left','Right']):
     # iterate over each given key and release it
-    if len(keys) == 1:
-        keysym = Xlib.XK.string_to_keysym(keys[0])
+    for key in keys:
+        keysym = Xlib.XK.string_to_keysym(key)
         keycode = display.keysym_to_keycode(keysym)
         Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-
-    else:
-        for key in keys:
-            keysym = Xlib.XK.string_to_keysym(key)
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
 
 
 
@@ -69,6 +63,10 @@ def movement(display, target ,player):
         keycode = display.keysym_to_keycode(keysym)
         Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
 
+        # move opposite direction to stop player
+        movementStop(display, 'Right')
+
+
     # if target Y axis is SMALLER player Y axis move towards it
     elif target[1] < (player[1] - distance):
 
@@ -79,6 +77,10 @@ def movement(display, target ,player):
         keysym = Xlib.XK.string_to_keysym('Up')
         keycode = display.keysym_to_keycode(keysym)
         Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
+
+        # move opposite direction to stop player
+        movementStop(display, 'Down')
+
 
     # if target X axis is BIGGER player X axis move towards it
     elif target[0] > (player[0] + distance):
@@ -91,6 +93,10 @@ def movement(display, target ,player):
         keycode = display.keysym_to_keycode(keysym)
         Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
 
+        # move opposite direction to stop player
+        movementStop(display, 'Left')
+
+
     # if target Y axis is BIGGER player Y axis move towards it
     elif target[1] > (player[1] + distance):
 
@@ -101,6 +107,10 @@ def movement(display, target ,player):
         keysym = Xlib.XK.string_to_keysym('Down')
         keycode = display.keysym_to_keycode(keysym)
         Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
+
+        # move opposite direction to stop player
+        movementStop(display, 'Up')
+
 
     elif target == None:
 
