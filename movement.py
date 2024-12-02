@@ -57,7 +57,7 @@ def movement(display, target ,player):
 
     # NOTE: placeholder distance for testing, optimal distance still to be found (assuming the whole function wont be re-written)
     # distance in pixels
-    distance = 20
+    distance = 40
 
     # trigger event based on distance
 
@@ -77,7 +77,7 @@ def movement(display, target ,player):
 
 
     # if target Y axis is SMALLER player Y axis move towards it
-    elif target[1] < (player[1] - distance):
+    elif target[1] <= (player[1] - distance):
 
         # reset all previous pushed keys
         keyboardReset(display)
@@ -92,7 +92,7 @@ def movement(display, target ,player):
 
 
     # if target X axis is BIGGER player X axis move towards it
-    elif target[0] > (player[0] + distance):
+    elif target[0] >= (player[0] + distance):
 
         # reset all previous pushed keys
         keyboardReset(display)
@@ -107,7 +107,7 @@ def movement(display, target ,player):
 
 
     # if target Y axis is BIGGER player Y axis move towards it
-    elif target[1] > (player[1] + distance):
+    elif target[1] >= (player[1] + distance):
 
         # reset all previous pushed keys
         keyboardReset(display)

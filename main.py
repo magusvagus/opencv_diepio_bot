@@ -10,12 +10,12 @@ from Xlib import X
 from Xlib.ext.xtest import fake_input
 
 from movement import movement
-
-
-from ultralytics import YOLO
 from window_capture import WindowCapture
 
+from ultralytics import YOLO
 
+
+print("Initializing Program")
 # define window/ app to capture
 windowCapture = WindowCapture('librewolf')
 windowCapture.start()
@@ -33,6 +33,7 @@ run = True
 
 
 
+print("Loading YOLO model...")
 # load YOLO AI image
 yolo = YOLO('./runs/detect/yolo_v8n_diep2k2/weights/best.pt')
 
