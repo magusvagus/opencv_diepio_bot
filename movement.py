@@ -25,18 +25,18 @@ def movementStop(display, key, distance = 2):
     Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
 
 
-def keyboardReset(display, keys = ['Up','Down','Left','Right']):
+def keyboardReset(display, key = ['Up','Down','Left','Right']):
     # iterate over each given key and release it
-    if type(keys) == "str":
+    if type(key) == "str":
 
-        keysym = Xlib.XK.string_to_keysym(keys)
+        keysym = Xlib.XK.string_to_keysym(key)
         keycode = display.keysym_to_keycode(keysym)
         Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
 
     else:
 
-        for key in keys:
-            keysym = Xlib.XK.string_to_keysym(key)
+        for keys in key:
+            keysym = Xlib.XK.string_to_keysym(keys)
             keycode = display.keysym_to_keycode(keysym)
             Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
 
@@ -56,6 +56,7 @@ def movement(display, target ,player):
     # either to big or to low.
 
     # NOTE: placeholder distance for testing, optimal distance still to be found (assuming the whole function wont be re-written)
+    # distance in pixels
     distance = 20
 
     # trigger event based on distance
