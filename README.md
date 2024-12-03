@@ -45,6 +45,11 @@ development of this tool.
 
 <= ultralytics           8.2.103
 
+
+**In testing**
+
+<= pynput                1.7.7
+
 ### Current Implementations
 
 - Image data (small)
