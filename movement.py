@@ -3,6 +3,7 @@ import Xlib.XK
 import Xlib.display
 from Xlib import X
 from Xlib.ext.xtest import fake_input
+from pynput.keyboard import Key, Controller
 
 # move towards target
 # NOTE: HORRIBLE protoype/ proof of concept, needs to be further improved.
@@ -12,37 +13,17 @@ from Xlib.ext.xtest import fake_input
 # WARN: still to be tested!!!
 
 # move into oppsite direction to stop movement
-def movementStop(display, key, distance = 2):
-    # push several times for faster stop
-    for i in range(distance):
-        keysym = Xlib.XK.string_to_keysym(key)
-        keycode = display.keysym_to_keycode(keysym)
-        Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
+def keyPush(key, repeat=1):
 
-    # release all keys
-    keysym = Xlib.XK.string_to_keysym(key)
-    keycode = display.keysym_to_keycode(keysym)
-    Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
+    keyboard = Controller()
 
-
-def keyboardReset(display, key = ['Up','Down','Left','Right']):
-    # iterate over each given key and release it
-    if type(key) == "str":
-
-        keysym = Xlib.XK.string_to_keysym(key)
-        keycode = display.keysym_to_keycode(keysym)
-        Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
-
-    else:
-
-        for keys in key:
-            keysym = Xlib.XK.string_to_keysym(keys)
-            keycode = display.keysym_to_keycode(keysym)
-            Xlib.ext.xtest.fake_input(display, Xlib.X.KeyRelease, keycode)
+    keyboard.press(key)
+    keyboard.release(key)
 
 
 
-def movement(display, target ,player):
+
+def movement(target ,player):
 
     # keyboard key push and release example code
 
@@ -57,72 +38,70 @@ def movement(display, target ,player):
 
     # NOTE: placeholder distance for testing, optimal distance still to be found (assuming the whole function wont be re-written)
     # distance in pixels
-    distance = 40
+    distance = 80
 
     # trigger event based on distance
 
     # if target X axis is SMALLER player X axis move towards it
     if target[0] <= (player[0] - distance):
+        keyboard = Controller()
+        keyboard.release(Key.down)
+        keyboard.release(Key.up)
+        keyboard.release(Key.left)
+        keyboard.release(Key.right)
 
-        # reset all previous pushed keys
-        keyboardReset(display)
-
-        # push key
-        keysym = Xlib.XK.string_to_keysym('Left')
-        keycode = display.keysym_to_keycode(keysym)
-        Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
-
-        # move opposite direction to stop player
-        movementStop(display, 'Right')
-
+        keyboard.press(Key.left)
+        keyboard.press(Key.left)
 
     # if target Y axis is SMALLER player Y axis move towards it
     elif target[1] <= (player[1] - distance):
+        keyboard = Controller()
+        keyboard.release(Key.down)
+        keyboard.release(Key.up)
+        keyboard.release(Key.left)
+        keyboard.release(Key.right)
 
-        # reset all previous pushed keys
-        keyboardReset(display)
-
-        # push key
-        keysym = Xlib.XK.string_to_keysym('Up')
-        keycode = display.keysym_to_keycode(keysym)
-        Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
-
-        # move opposite direction to stop player
-        movementStop(display, 'Down')
+        keyboard.press(Key.up)
+        keyboard.press(Key.up)
 
 
     # if target X axis is BIGGER player X axis move towards it
     elif target[0] >= (player[0] + distance):
+        keyboard = Controller()
+        keyboard.release(Key.down)
+        keyboard.release(Key.up)
+        keyboard.release(Key.left)
+        keyboard.release(Key.right)
 
-        # reset all previous pushed keys
-        keyboardReset(display)
-
-        # push key
-        keysym = Xlib.XK.string_to_keysym('Right')
-        keycode = display.keysym_to_keycode(keysym)
-        Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
-
-        # move opposite direction to stop player
-        movementStop(display, 'Left')
+        keyboard.press(Key.right)
+        keyboard.press(Key.right)
 
 
     # if target Y axis is BIGGER player Y axis move towards it
     elif target[1] >= (player[1] + distance):
+        keyboard = Controller()
 
+        keyboard.release(Key.down)
+        keyboard.release(Key.up)
+        keyboard.release(Key.left)
+        keyboard.release(Key.right)
+
+        keyboard.press(Key.down)
+        keyboard.press(Key.down)
+
+
+    else:
+
+        keyboard = Controller()
         # reset all previous pushed keys
-        keyboardReset(display)
+        keyboard.release(Key.down)
+        keyboard.release(Key.up)
+        keyboard.release(Key.left)
+        keyboard.release(Key.right)
 
-        # push key
-        keysym = Xlib.XK.string_to_keysym('Down')
-        keycode = display.keysym_to_keycode(keysym)
-        Xlib.ext.xtest.fake_input(display, Xlib.X.KeyPress, keycode)
-
-        # move opposite direction to stop player
-        movementStop(display, 'Up')
-
-
-    elif target == None:
-
-        # reset all previous pushed keys
-        keyboardReset(display)
-
+    # if this is added the tank move very slow and steady
+    # keyboard = Controller()
+    # keyboard.release(Key.down)
+    # keyboard.release(Key.up)
+    # keyboard.release(Key.left)
+    # keyboard.release(Key.right)
