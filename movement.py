@@ -18,13 +18,12 @@ def releaseArrowKeys(keys=[Key.down, Key.up, Key.left, Key.right]):
 
 
 # push and release key X times
-def keyPush(key, repeat=1):
+def pushKey(key, repeat=1):
 
     for i in range(repeat):
         keyboard = Controller()
-
         keyboard.press(key)
-        keyboard.release(key)
+
 
 
 
@@ -36,51 +35,47 @@ def movement(target ,player):
 
     # NOTE: placeholder distance for testing, optimal distance still to be found (assuming the whole function wont be re-written)
     # distance in pixels
-    distance = 80
+    distance = 160
 
     # trigger event based on distance
 
     # if target X axis is SMALLER player X axis move towards it
     if target[0] <= (player[0] - distance):
 
-        # reset previous pushed keys
+        # reset previous pushed arrow keys
         releaseArrowKeys()
 
         # push and realese key
-        keyboard = Controller()
-        keyboard.press(Key.left)
+        pushKey(Key.left, 1)
 
     # if target Y axis is SMALLER player Y axis move towards it
     elif target[1] <= (player[1] - distance):
 
-        # reset previous pushed keys
+        # reset previous pushed arrow keys
         releaseArrowKeys()
 
         # push and realese key
-        keyboard = Controller()
-        keyboard.press(Key.up)
+        pushKey(Key.up, 1)
 
 
     # if target X axis is BIGGER player X axis move towards it
     elif target[0] >= (player[0] + distance):
 
-        # reset previous pushed keys
+        # reset previous pushed arrow keys
         releaseArrowKeys()
 
         # push and realese key
-        keyboard = Controller()
-        keyboard.press(Key.right)
+        pushKey(Key.right, 1)
 
 
     # if target Y axis is BIGGER player Y axis move towards it
     elif target[1] >= (player[1] + distance):
 
-        # reset previous pushed keys
+        # reset previous pushed arrow keys
         releaseArrowKeys()
 
         # push and realese key
-        keyboard = Controller()
-        keyboard.press(Key.down)
+        pushKey(Key.down, 1)
 
 
     else:
