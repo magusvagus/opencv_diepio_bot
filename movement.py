@@ -9,6 +9,13 @@ from pynput.keyboard import Key, Controller
 
 
 # WARN: functions still to be tested!!!
+def releaseArrowKeys(keys=[Key.down, Key.up, Key.left, Key.right]):
+    keyboard = Controller()
+
+    for key in keys:
+        # reset previous pushed keys
+        keyboard.release(key)
+
 
 # push and release key X times
 def keyPush(key, repeat=1):
@@ -35,70 +42,50 @@ def movement(target ,player):
 
     # if target X axis is SMALLER player X axis move towards it
     if target[0] <= (player[0] - distance):
-        keyboard = Controller()
 
         # reset previous pushed keys
-        keyboard.release(Key.down)
-        keyboard.release(Key.up)
-        keyboard.release(Key.left)
-        keyboard.release(Key.right)
+        releaseArrowKeys()
 
         # push and realese key
-        keyboard.press(Key.left)
+        keyboard = Controller()
         keyboard.press(Key.left)
 
     # if target Y axis is SMALLER player Y axis move towards it
     elif target[1] <= (player[1] - distance):
-        keyboard = Controller()
 
         # reset previous pushed keys
-        keyboard.release(Key.down)
-        keyboard.release(Key.up)
-        keyboard.release(Key.left)
-        keyboard.release(Key.right)
+        releaseArrowKeys()
 
         # push and realese key
-        keyboard.press(Key.up)
+        keyboard = Controller()
         keyboard.press(Key.up)
 
 
     # if target X axis is BIGGER player X axis move towards it
     elif target[0] >= (player[0] + distance):
-        keyboard = Controller()
 
         # reset previous pushed keys
-        keyboard.release(Key.down)
-        keyboard.release(Key.up)
-        keyboard.release(Key.left)
-        keyboard.release(Key.right)
+        releaseArrowKeys()
 
         # push and realese key
-        keyboard.press(Key.right)
+        keyboard = Controller()
         keyboard.press(Key.right)
 
 
     # if target Y axis is BIGGER player Y axis move towards it
     elif target[1] >= (player[1] + distance):
-        keyboard = Controller()
 
         # reset previous pushed keys
-        keyboard.release(Key.down)
-        keyboard.release(Key.up)
-        keyboard.release(Key.left)
-        keyboard.release(Key.right)
+        releaseArrowKeys()
 
         # push and realese key
-        keyboard.press(Key.down)
+        keyboard = Controller()
         keyboard.press(Key.down)
 
 
     else:
-        keyboard = Controller()
         # reset all previous pushed keys
-        keyboard.release(Key.down)
-        keyboard.release(Key.up)
-        keyboard.release(Key.left)
-        keyboard.release(Key.right)
+        releaseArrowKeys()
 
     # if this is added the tank move very very slow this might be
     # useful
