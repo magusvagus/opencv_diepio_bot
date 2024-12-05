@@ -1,0 +1,8 @@
+x1 leveling symbol:
+
+x = 249
+y = 864
+
+R 233
+G 233
+B 233

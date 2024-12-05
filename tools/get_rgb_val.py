@@ -15,11 +15,12 @@ def mouseRGB(event,x,y,flags,param):
         print("Coordinates of pixel: X: ",x,"Y: ",y)
 
 # Read an image, a window and bind the function to window
-image = cv2.imread("../yolo/images/train/screenshotOpenCV183734.png")
+image = cv2.imread("../yolo/images/train/screenshotOpenCV232536.png")
 cv2.namedWindow('mouseRGB')
 cv2.setMouseCallback('mouseRGB',mouseRGB)
 
-image = cv2.resize(image, (960,540))
+#image = cv2.resize(image, (960,540))
+image = cv2.resize(image, (1920,1080))
 
 #Do until esc pressed
 while(1):
