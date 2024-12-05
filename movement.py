@@ -2,16 +2,17 @@ from pynput.keyboard import Key, Controller
 
 # move towards target
 
-# NOTE: Xlib library has been scraped, and replaced with pynput due to more consistant/ predictable results. Future versions will need to go back to Xlib preferbly XCB
+# NOTE: Xlib library has been scraped, and replaced with pynput due to more consistant/ predictable results. Future versions will need to go back to Xlib preferbly XCB, for performance reasons.
 
 
 
 # go over each arrow key and release it
 def releaseArrowKeys(keys=[Key.down, Key.up, Key.left, Key.right]):
 
+    keyboard = Controller()
+
     for key in keys:
         # reset previous pushed keys
-        keyboard = Controller()
         keyboard.release(key)
 
 
@@ -19,9 +20,10 @@ def releaseArrowKeys(keys=[Key.down, Key.up, Key.left, Key.right]):
 # push and release key X times
 def pushKey(key, repeat=1):
 
+    keyboard = Controller()
+
     for i in range(repeat):
         # removing keyboard = C.. makes the player move faster
-        keyboard = Controller()
         keyboard.press(key)
 
 
