@@ -15,7 +15,10 @@ def mouseRGB(event,x,y,flags,param):
         print("Coordinates of pixel: X: ",x,"Y: ",y)
 
 # Read an image, a window and bind the function to window
-image = cv2.imread("../yolo/images/train/screenshotOpenCV232536.png")
+
+# example with leveling tree and levelup
+image = cv2.imread("../yolo/images/train/screenshotOpenCV232202.png")
+
 cv2.namedWindow('mouseRGB')
 cv2.setMouseCallback('mouseRGB',mouseRGB)
 
