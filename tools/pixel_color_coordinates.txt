@@ -1,4 +1,6 @@
-x1 leveling symbol:
+Pixels that are checked if level up's are available
+
+x1 leveling marker
 
 x = 249
 y = 864
@@ -6,3 +8,25 @@ y = 864
 R 233
 G 233
 B 233
+
+
+Evolution choises to transform tank
+
+upper left		upper right
+
+x = 103			x = 214
+y =  83			y =  82
+
+R 162			R 180
+G 247			G 247
+B 244			B 146
+
+
+lower left		lower right
+
+x = 101			x = 208
+y = 183			y = 189
+
+R 250			R 249
+G 148			G 231
+B 148			B 147
