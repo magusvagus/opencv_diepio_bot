@@ -28,10 +28,9 @@ def pushKey(key, repeat=1):
 
 
 
-def movement(target ,player):
+def movement(target ,player, distance=160):
 
     # distance in pixels
-    distance = 160
 
     # trigger event based on distance
 
