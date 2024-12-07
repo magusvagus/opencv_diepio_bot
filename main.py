@@ -52,15 +52,18 @@ def getColours(cls_num):
 # WARN: still to be tested !!!
 
 # if coordinates are equal to set value, do..
-def checkPixelVal(root, image, coordinates, colorRGB):
+def checkPixelVal(root, image, stats, coordinates, colorRGB):
 
     # move to pixel
     root.warp_pointer(coordinates[0], coordinates[1])
 
     # compare pixels
+    # FIX: move to seperate function
     if np.all(image[coordinates[0],coordinates[1]] == [colorRGB[0],colorRGB[1],colorRGB[2]]):
         # level up skill
-        pushKey('5')
+        pushKey('6')
+        stats[5] =+ 1
+
 
 
 
@@ -76,8 +79,6 @@ fps_start = time.time()
 
 
 # stats levels
-# current test build -> Octo-tank: 0/2/3/0/7/7/7/7
-# Overlord: 0/2/3/7/7/7/0/7
 health_regen       = 0
 max_health         = 0
 body_damage        = 0
@@ -86,6 +87,21 @@ bullet_penetration = 0
 bullet_damage      = 0
 reload             = 0
 movement_speed     = 0
+
+# current test build -> Octo-tank: 0/2/3/0/7/7/7/7
+# Overlord: 0/2/3/7/7/7/0/7
+
+# FIX: move to seperate function
+stats = [ 
+    health_regen, 
+    max_health,
+    body_damage,
+    bullet_speed,
+    bullet_penetration,
+    bullet_damage,
+    reload,
+    movement_speed
+    ]
 
 # leveling paths
 # Tank -> Twin   -> Quad     -> Octotank
