@@ -9,7 +9,7 @@ import Xlib.display
 from Xlib import X
 from Xlib.ext.xtest import fake_input
 
-from movement import movement
+from movement import movement, pushKey
 from window_capture import WindowCapture
 
 from ultralytics import YOLO
@@ -47,6 +47,20 @@ def getColours(cls_num):
     color = [base_colors[color_index][i] + increments[color_index][i] * 
     (cls_num // len(base_colors)) % 256 for i in range(3)]
     return tuple(color)
+
+
+# WARN: still to be tested !!!
+
+# if coordinates are equal to set value, do..
+def checkPixelVal(root, image, coordinates, colorRGB):
+
+    # move to pixel
+    root.warp_pointer(coordinates[0], coordinates[1])
+
+    # compare pixels
+    if np.all(image[coordinates[0],coordinates[1]] == [colorRGB[0],colorRGB[1],colorRGB[2]]):
+        # level up skill
+        pushKey('5')
 
 
 
