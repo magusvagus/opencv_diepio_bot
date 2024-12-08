@@ -61,9 +61,37 @@ def checkPixelVal(root, image, stats, coordinates, colorRGB):
     # FIX: move to seperate function
     if np.all(image[coordinates[0],coordinates[1]] == [colorRGB[0],colorRGB[1],colorRGB[2]]):
         # level up skill
-        pushKey('6')
-        stats[5] =+ 1
+        if stats[5] <= 4:
+            pushKey('6')
+            stats[5] =+ 1
+            
+            if stats[6] >= 4:
+                pushKey('6')
+                stats[5] =+ 1
 
+        elif stats[5] <= 4:
+            pushKey('5')
+            stats[4] =+ 1
+
+            if stats[5] >= 5 and stats[5] != 7:
+                pushKey('5')
+                stats[4] =+ 1
+
+        elif stats[4] <= 4:
+            pushKey('7')
+            stats[6] =+ 1
+
+            if stats[4] >= 5 and stats[4] != 7:
+                pushKey('7')
+                stats[6] =+ 1
+
+        elif stats[6] <= 4:
+            pushKey('8')
+            stats[6] =+ 1
+
+            if stats[6] >= 5 and stats[6] != 7:
+                pushKey('7')
+                stats[6] =+ 1
 
 
 
@@ -79,14 +107,14 @@ fps_start = time.time()
 
 
 # stats levels
-health_regen       = 0
-max_health         = 0
-body_damage        = 0
-bullet_speed       = 0
-bullet_penetration = 0
-bullet_damage      = 0
-reload             = 0
-movement_speed     = 0
+health_regen       = 0 # key 1
+max_health         = 0 # key 2
+body_damage        = 0 # key 3
+bullet_speed       = 0 # key 4
+bullet_penetration = 0 # key 5
+bullet_damage      = 0 # key 6
+reload             = 0 # key 7
+movement_speed     = 0 # key 8
 
 # current test build -> Octo-tank: 0/2/3/0/7/7/7/7
 # Overlord: 0/2/3/7/7/7/0/7
