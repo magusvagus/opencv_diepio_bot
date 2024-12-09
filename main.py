@@ -23,16 +23,6 @@ run = True
 
 
 
-# load images
-#needle_image = cv.imread('./screenshots_diepio/farming/farm_cube2.png', cv.IMREAD_UNCHANGED)
-#image = cv.imread('./screenshots_diepio/gameplay_screenshots/Oct30_224501.png', cv.IMREAD_UNCHANGED)
-
-
-# create HSV trackbars for masking
-#TrackbarsHSV("Trackbars", "LH","LS","LV","UH","US","UV", 0, 255)
-
-
-
 print("Loading YOLO model...")
 # load YOLO AI image
 yolo = YOLO('./runs/detect/yolo_v8n_diep2k2/weights/best.pt')
@@ -80,7 +70,6 @@ def checkPixelVal(root, image, stats, coordinates, colorRGB):
         # elif stats[7] == 3 and stats[5] != 7:
         #     pushKey('6')
         #     stats[5] =+ 1
-
 
 
 
