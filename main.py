@@ -54,44 +54,33 @@ def getColours(cls_num):
 # if coordinates are equal to set value, do..
 def checkPixelVal(root, image, stats, coordinates, colorRGB):
 
-    # move to pixel
+    # move mouse pointer to pixel
     root.warp_pointer(coordinates[0], coordinates[1])
 
-    # compare pixels
+    # check for given RGB value
     # FIX: move to seperate function
-    if np.all(image[coordinates[0],coordinates[1]] == [colorRGB[0],colorRGB[1],colorRGB[2]]):
+    if np.all( image[coordinates[0],coordinates[1]] == [colorRGB[0],colorRGB[1],colorRGB[2]] ):
         # level up skill
         if stats[5] <= 4:
             pushKey('6')
             stats[5] =+ 1
-            
-            if stats[6] >= 4:
-                pushKey('6')
-                stats[5] =+ 1
 
-        elif stats[5] <= 4:
+        elif stats[5] == 4:
             pushKey('5')
             stats[4] =+ 1
 
-            if stats[5] >= 5 and stats[5] != 7:
-                pushKey('5')
-                stats[4] =+ 1
-
-        elif stats[4] <= 4:
+        elif stats[4] == 4:
             pushKey('7')
             stats[6] =+ 1
 
-            if stats[4] >= 5 and stats[4] != 7:
-                pushKey('7')
-                stats[6] =+ 1
-
-        elif stats[6] <= 4:
+        elif stats[6] == 4:
             pushKey('8')
-            stats[6] =+ 1
+            stats[7] =+ 1
 
-            if stats[6] >= 5 and stats[6] != 7:
-                pushKey('7')
-                stats[6] =+ 1
+        # elif stats[7] == 3 and stats[5] != 7:
+        #     pushKey('6')
+        #     stats[5] =+ 1
+
 
 
 
@@ -220,6 +209,8 @@ while run:
                             print(f"Class name: {class_name}\n")
                             print(f"Current target coordinates: {closest_target[0], closest_target[1]}\n")
                             print(f"Distance: {distance}\n")
+                            # additional debug info
+                            print(f"All boxes: {result.boxes}")
 
 
 
@@ -269,6 +260,9 @@ while run:
 
                 # move to target
                 movement(closest_target, (pX, pY))
+
+                # check given pixel for RGB value
+                # checkPixelVal(root, screenshot, stats, (249,864), (233,233,233) )
 
                 # reset aim bot
                 closest_target = None
