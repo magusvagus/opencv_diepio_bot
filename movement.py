@@ -25,6 +25,7 @@ def pushKey(key, repeat=1):
     for i in range(repeat):
         # removing keyboard = C.. makes the player move faster
         keyboard.press(key)
+        keyboard.release(key)
 
 
 

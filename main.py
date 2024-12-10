@@ -41,6 +41,7 @@ def getColours(cls_num):
 
 # WARN: still to be tested !!!
 
+# FIX: function not able to ckeck pixel value, needs fix
 # if coordinates are equal to set value, do..
 def checkPixelVal(root, image, stats, coordinates, colorRGB):
 
@@ -50,7 +51,8 @@ def checkPixelVal(root, image, stats, coordinates, colorRGB):
     # check for given RGB value
     # FIX: move to seperate function
     if np.all( image[coordinates[0],coordinates[1]] == [colorRGB[0],colorRGB[1],colorRGB[2]] ):
-        # level up skill
+
+        level up skill
         if stats[5] <= 4:
             pushKey('6')
             stats[5] =+ 1
@@ -251,7 +253,7 @@ while run:
                 movement(closest_target, (pX, pY))
 
                 # check given pixel for RGB value
-                # checkPixelVal(root, screenshot, stats, (249,864), (233,233,233) )
+                #checkPixelVal(root, screenshot, stats, (249,864), (233,233,233) )
 
                 # reset aim bot
                 closest_target = None
