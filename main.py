@@ -25,7 +25,7 @@ run = True
 
 print("Loading YOLO model...")
 # load YOLO AI image
-yolo = YOLO('./runs/detect/yolo_v8n_diep2k2/weights/best.pt')
+yolo = YOLO('./runs/detect/yolo_v8n_diep11n/weights/best.pt')
 
 
 
@@ -52,7 +52,7 @@ def checkPixelVal(root, image, stats, coordinates, colorRGB):
     # FIX: move to seperate function
     if np.all( image[coordinates[0],coordinates[1]] == [colorRGB[0],colorRGB[1],colorRGB[2]] ):
 
-        level up skill
+        # level up skill
         if stats[5] <= 4:
             pushKey('6')
             stats[5] =+ 1
