@@ -54,3 +54,10 @@ development of this tool.
 - Basic Aim-bot
 - Basic movement prototype
 
+### Installation
+
+**Python dependencies**
+
+```bash
+pip install -r requirements.txt
+```
