@@ -44,7 +44,7 @@ development of this tool.
 
 **YOLOv8**
 
-<= ultralytics           8.2.103
+<= ultralytics           8.3.0
 
 
 ### Current Implementations
