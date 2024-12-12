@@ -23,9 +23,10 @@ def pushKey(key, repeat=1):
     keyboard = Controller()
 
     for i in range(repeat):
-        # removing keyboard = C.. makes the player move faster
         keyboard.press(key)
-        keyboard.release(key)
+
+        # WARN: do not use this code below otherwise the tank wont move
+        # keyboard.release(key)
 
 
 
