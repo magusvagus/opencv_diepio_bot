@@ -3,10 +3,7 @@ the second one at 28 pts (level 29)
 and the last one at 39 pts (level 45)
 
 
-
-Pixels that are checked if level up's are available
-
-x1 leveling marker
+X1 LEVELING MARKER
 
 x = 249
 y = 864
@@ -17,24 +14,69 @@ B 233
 
 
 
-Evolution choises to transform tank
+LEVEL COLORS
 
-upper left	|	upper right
-		|
-x = 103		|	x = 214
-y =  83		|	y =  82
-		|
-R 162		|	R 180
-G 247		|	G 247
-B 244		|	B 146
-		|
------------------------------------
-		|
-lower left	|	lower right
-		|
-x = 101		|	x = 208
-y = 183		|	y = 189
-		|
-R 250		|	R 249
-G 148		|	G 231
-B 148		|	B 147
+Health Regen       231 175 137
+Max Health         229 101 233
+Body Damage        147 101 233
+Bullet Speed       101 143 233
+Bullet Penetration 233 210 101
+Bullet Damage      233 101 101
+Reload             145 233 101
+Movement Speed     101 233 229
+
+
+
+LEVEL BUTTONS COORDINATES
+
+Health Regen       206 880
+Max Health         206 903
+Body Damage        206 926
+Bullet Speed       205 950
+Bullet Penetration 206 972
+Bullet Damage      206 995
+Reload             206 1018
+Movement Speed     205 1042
+
+
+
+EVOLUTION CHOISES TO TRANSFORM TANK
+
+upper left
+
+x = 103
+y =  83
+
+R 162
+G 247
+B 244
+
+
+upper right
+
+x = 214
+y =  82
+
+R 180
+G 247
+B 146
+
+
+lower left
+
+x = 101
+y = 183
+
+R 250
+G 148
+B 148
+
+
+lower right
+
+x = 208
+y = 189
+
+R 249
+G 231
+B 147
