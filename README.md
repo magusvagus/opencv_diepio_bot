@@ -14,11 +14,11 @@ development of this tool.
 
 | Class    | Images  |Instances|   Box(P    |     R     |   mAP50  | mAP50-95) |
 |:---------|:-------:|:-------:|:----------:|:---------:|:--------:|----------:|
-| all      |   22    |   168   |   0.575    |   0.654   |   0.711  |    0.407  |
-| cube     |   21    |    60   |   0.598    |       1   |   0.918  |    0.621  |
-| triangle |   22    |    80   |       1    |   0.653   |   0.959  |    0.613  |
-| pentagon |   13    |    27   |   0.703    |   0.963   |   0.968  |    0.394  |
-| enemy_npc|    1    |     1   |       0    |       0   |       0  |        0  |
+| all      |   22    |   168   |    0.94    |   0.739   |   0.977  |    0.793  |
+| cube     |   21    |    60   |   0.856    |       1   |   0.963  |    0.895  |
+| triangle |   22    |    80   |   0.972    |   0.963   |   0.964  |    0.857  |
+| pentagon |   13    |    27   |   0.931    |   0.994   |   0.986  |    0.723  |
+| enemy_npc|    1    |     1   |       1    |       0   |   0.995  |    0.697  |
 
 - Simple movement and aiming (in developement)
 - Interaction with other NPCs/ players
