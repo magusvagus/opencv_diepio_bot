@@ -5,6 +5,7 @@ def skillsTree(image):
 
     #main dictionary
     skills = {
+        # skill bar name
         'health_regen' : {
                 'level1' : {
                     'level':1,
