@@ -3,6 +3,7 @@ the second one at 28 pts (level 29)
 and the last one at 39 pts (level 45)
 
 
+
 X1 LEVELING MARKER
 
 x = 249
@@ -27,7 +28,7 @@ Movement Speed     101 233 229
 
 
 
-LEVEL BUTTONS COORDINATES
+LEVEL BUTTONS XY COORDINATES
 
 Health Regen       206 880
 Max Health         206 903
@@ -37,6 +38,42 @@ Bullet Penetration 206 972
 Bullet Damage      206 995
 Reload             206 1018
 Movement Speed     205 1042
+
+
+
+EACH LEVEL POSITION
+
+// Health Regen
+Level 1: 
+
+(...)
+
+// Bullet Penetration
+Level 1:  46,  978
+Level 2:  73,  978
+Level 3:  95,  979
+Level 4: 118,  979
+Level 5: 140,  979
+Level 6: 165,  979
+Level 7: 186,  979
+
+// Bullet Damage
+Level 1:  45,  996
+Level 2:  71, 1002
+Level 3:  94, 1001
+Level 4: 114, 1001
+Level 5: 141, 1001
+Level 6: 165, 1001
+Level 7: 188, 1002
+
+// Reload
+Level 1:  44, 1025 
+Level 2:  70, 1025
+Level 3:  94, 1025
+Level 4: 117, 1025
+Level 5: 141, 1025
+Level 6: 163, 1025
+Level 7: 189, 1025
 
 
 
