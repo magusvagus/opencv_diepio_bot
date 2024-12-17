@@ -7,7 +7,7 @@ def skillTree(image):
     skills = {
         # skill bar name
         'health_regen' : {
-            'color':(11,11,11),
+            'color':(231,175,137),
 
             'level1' : {
                 'level':1,
@@ -40,7 +40,7 @@ def skillTree(image):
         },
 
         'max_health' : {
-            'color':(77,77,77),
+            'color':(229,101,233),
 
             'level1' : {
                 'level':1,
@@ -73,7 +73,7 @@ def skillTree(image):
         },
 
         'body_damage' : {
-            'color':(77,77,77),
+            'color':(147,101,233),
 
             'level1' : {
                 'level':1,
@@ -106,7 +106,7 @@ def skillTree(image):
         },
 
         'bullet_speed' : {
-            'color':(77,77,77),
+            'color':(101,143,233),
 
             'level1' : {
                 'level':1,
@@ -139,7 +139,7 @@ def skillTree(image):
         },
 
         'bullet_penetration' : {
-            'color':(77,77,77),
+            'color':(233,210,101),
 
             'level1' : {
                 'level':1,
@@ -172,7 +172,7 @@ def skillTree(image):
         },
 
         'bullet_damage' : {
-            'color':(77,77,77),
+            'color':(233,101,101),
             'level1' : {
                 'level':1,
                 'coordinates':image[10,10],
@@ -204,7 +204,7 @@ def skillTree(image):
         },
 
         'relaod' : {
-            'color':(77,77,77),
+            'color':(145,233,101),
 
             'level1' : {
                 'level':1,
@@ -237,7 +237,7 @@ def skillTree(image):
         },
 
         'movement_speed' : {
-            'color':(77,77,77),
+            'color':(101,233,229),
 
             'level1' : {
                 'level':1,
