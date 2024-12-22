@@ -52,7 +52,7 @@ Level 5: 132,  886
 Level 6: 164,  886
 Level 7: 186,  886
 
-// Max Health
+Max Health
 Level 1:  46,  910
 Level 2:  70,  910
 Level 3:  94,  910
@@ -69,6 +69,15 @@ Level 4: 117,  932
 Level 5: 132,  932
 Level 6: 164,  932
 Level 7: 186,  932
+
+// Bullet Speed
+Level 1:  45,  956
+Level 2:  71,  956
+Level 3:  94,  956
+Level 4: 117,  956
+Level 5: 140,  956
+Level 6: 164,  956
+Level 7: 186,  956
 
 // Bullet Penetration
 Level 1:  46,  978
