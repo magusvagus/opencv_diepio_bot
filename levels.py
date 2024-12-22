@@ -6,116 +6,114 @@ def skillsTree(image):
     #main dictionary
     skills = {
         # skill bar name
-            # NOTE: coordinates needed
             'health_regen' : {
                 'level1' : {
                     'level':1,
-                    'coordinates':image[10,10],
+                    'coordinates':image[45,886],
+                    'color':(22,22,22),
                 },
                 'level2' : {
                     'level':2,
-                    'coordinates':image[10,10],
+                    'coordinates':image[70,886],
                     'color':(22,22,22),
                 },
                 'level3' : {
                     'level':3,
-                    'coordinates':image[10,10],
+                    'coordinates':image[94,886],
                     'color':(33,33,33),
                 },
                 'level4' : {
                     'level':4,
-                    'coordinates':image[10,10],
+                    'coordinates':image[117,886],
                     'color':(44,44,44),
                 },
                 'level5' : {
                     'level':5,
-                    'coordinates':image[10,10],
+                    'coordinates':image[132,886],
                     'color':(55,55,55),
                 },
                 'level6' : { 
                     'level':6,
-                    'coordinates':image[10,10],
+                    'coordinates':image[164,886],
                     'color':(66,66,66),
                 },
                 'level7' : { 
                     'level':7,
-                    'coordinates':image[10,10],
+                    'coordinates':image[186,886],
                     'color':(77,77,77),
                 },
             },
-            # NOTE: coordinates needed
             'max_health' : {
                 'level1' : {
                     'level':1,
-                    'coordinates':image[10,10],
+                    'coordinates':image[46,910],
                     'color':(11,11,11),
                 },
                 'level2' : {
                     'level':2,
-                    'coordinates':image[10,10],
+                    'coordinates':image[70,910],
                     'color':(22,22,22),
                 },
                 'level3' : {
                     'level':3,
-                    'coordinates':image[10,10],
+                    'coordinates':image[94,910],
                     'color':(33,33,33),
                 },
                 'level4' : {
                     'level':4,
-                    'coordinates':image[10,10],
+                    'coordinates':image[117,910],
                     'color':(44,44,44),
                 },
                 'level5' : {
                     'level':5,
-                    'coordinates':image[10,10],
+                    'coordinates':image[132,910],
                     'color':(55,55,55),
                 },
                 'level6' : { 
                     'level':6,
-                    'coordinates':image[10,10],
+                    'coordinates':image[164,910],
                     'color':(66,66,66),
                 },
                 'level7' : { 
                     'level':7,
-                    'coordinates':image[10,10],
+                    'coordinates':image[186,910],
                     'color':(77,77,77),
                 },
             },
-            # NOTE: coordinates needed
             'body_damage' : {
                 'level1' : {
                     'level':1,
-                    'coordinates':image[10,10],
+                    'coordinates':image[46,932],
                     'color':(11,11,11),
                 },
                 'level2' : {
                     'level':2,
-                    'coordinates':image[10,10],
+                    'coordinates':image[70,932],
                     'color':(22,22,22),
                 },
                 'level3' : {
                     'level':3,
-                    'coordinates':image[10,10],
+                    'coordinates':image[94,932],
                     'color':(33,33,33),
                 },
                 'level4' : {
                     'level':4,
-                    'coordinates':image[10,10],
+                    'coordinates':image[117,932],
                     'color':(44,44,44),
                 },
                 'level5' : {
                     'level':5,
-                    'coordinates':image[10,10],
+                    'coordinates':image[132,932],
                     'color':(55,55,55),
                 },
                 'level6' : { 
                     'level':6,
-                    'coordinates':image[10,10],
+                    'coordinates':image[164,932],
                     'color':(66,66,66),
                 },
                 'level7' : { 
                     'level':7,
-                    'coordinates':image[10,10],
+                    'coordinates':image[186,932],
                     'color':(77,77,77),
                 },
             },
@@ -268,41 +266,40 @@ def skillsTree(image):
                     'color':(77,77,77),
                 },
             },
-            # NOTE: coordinates needed
             'movement_speed' : {
                 'level1' : {
                     'level':1,
-                    'coordinates':image[10,10],
+                    'coordinates':image[44,1048],
                     'color':(11,11,11),
                 },
                 'level2' : {
                     'level':2,
-                    'coordinates':image[10,10],
+                    'coordinates':image[70,1048],
                     'color':(22,22,22),
                 },
                 'level3' : {
                     'level':3,
-                    'coordinates':image[10,10],
+                    'coordinates':image[94,1048],
                     'color':(33,33,33),
                 },
                 'level4' : {
                     'level':4,
-                    'coordinates':image[10,10],
+                    'coordinates':image[117,1048],
                     'color':(44,44,44),
                 },
                 'level5' : {
                     'level':5,
-                    'coordinates':image[10,10],
+                    'coordinates':image[137,1048],
                     'color':(55,55,55),
                 },
                 'level6' : { 
                     'level':6,
-                    'coordinates':image[10,10],
+                    'coordinates':image[163,1048],
                     'color':(66,66,66),
                 },
                 'level7' : { 
                     'level':7,
-                    'coordinates':image[10,10],
+                    'coordinates':image[189,1048],
                     'color':(77,77,77),
                 },
             },
