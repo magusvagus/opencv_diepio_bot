@@ -117,41 +117,40 @@ def skillsTree(image):
                     'color':(77,77,77),
                 },
             },
-            # NOTE: coordinates needed
             'bullet_speed' : {
                 'level1' : {
                     'level':1,
-                    'coordinates':image[10,10],
+                    'coordinates':image[45,956],
                     'color':(11,11,11),
                 },
                 'level2' : {
                     'level':2,
-                    'coordinates':image[10,10],
+                    'coordinates':image[71,956],
                     'color':(22,22,22),
                 },
                 'level3' : {
                     'level':3,
-                    'coordinates':image[10,10],
+                    'coordinates':image[94,956],
                     'color':(33,33,33),
                 },
                 'level4' : {
                     'level':4,
-                    'coordinates':image[10,10],
+                    'coordinates':image[117,956],
                     'color':(44,44,44),
                 },
                 'level5' : {
                     'level':5,
-                    'coordinates':image[10,10],
+                    'coordinates':image[140,956],
                     'color':(55,55,55),
                 },
                 'level6' : { 
                     'level':6,
-                    'coordinates':image[10,10],
+                    'coordinates':image[164,956],
                     'color':(66,66,66),
                 },
                 'level7' : { 
                     'level':7,
-                    'coordinates':image[10,10],
+                    'coordinates':image[186,956],
                     'color':(77,77,77),
                 },
             },
