@@ -34,7 +34,7 @@ def RGBhigh(image):
     print(f"Level7: {image[932,186]}\n")
 
     # bullet speed
-    print("//BULLET DAMAGE")
+    print("//BULLET SPEED")
     print(f"Level1: {image[956,45]}")
     print(f"Level2: {image[956,71]}")
     print(f"Level3: {image[956,94]}")
@@ -93,7 +93,7 @@ RGBhigh(image)
 
 
 image2 = cv2.imread("../../../../../screenshots/heute-low.png")
-RGBlow(image2)
+#RGBlow(image2)
 
 #cv2.namedWindow('mouseRGB')
 
@@ -136,7 +136,7 @@ Level5: [239 107 154]
 Level6: [239 107 154]
 Level7: [239 107 154]
 
-//BULLET DAMAGE
+//BULLET SPEED
 Level1: [237 147 105]
 Level2: [237 147 105]
 Level3: [237 147 105]
