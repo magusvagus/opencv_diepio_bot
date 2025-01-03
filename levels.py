@@ -2,7 +2,7 @@
 
 def skillsTree(image):
 
-    #main dictionary
+    # main dictionary
     skills = {
         # skill bar name
             'health_regen' : {
@@ -227,7 +227,7 @@ def skillsTree(image):
                     'color':(97,97,218),
                 },
             },
-            'relaod' : {
+            'reload' : {
                 'level1' : {
                     'level':1,
                     'coordinates':image[44,1025],
